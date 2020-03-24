@@ -13,10 +13,10 @@ def combine(c, s):
     return c if s == '' else ', '.join([s, c])
 
 
-data['location'] = list(
+data['Location'] = list(
     map(combine, data['Country/Region'], data['Province/State']))
 
-groups = list(data.groupby('location'))
+groups = list(data.groupby('Location'))
 
 if not os.path.exists("images"):
     os.mkdir("images")
