@@ -1,0 +1,10 @@
+name: covid19
+channels:
+  - default
+dependencies:
+  - python=3.7
+  - pip:
+      - psycopg2
+      - plotly
+      - pandas
+      - scipy
