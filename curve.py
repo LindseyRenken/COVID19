@@ -1,3 +1,9 @@
+# County-level data for the United States
+# Number of people tested, number who are negative, number who are positive
+# Number of hospitalized patients
+# Number of deaths, number of recovered
+
+
 import pandas as pd
 import math
 import plotly.graph_objects as go
