@@ -8,6 +8,8 @@ import pandas as pd
 import math
 import plotly.graph_objects as go
 import os
+import requests
+import io
 
 url = 'https://datahub.io/core/covid-19/r/time-series-19-covid-combined.csv'
 s = requests.get(url).content
