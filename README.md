@@ -2,7 +2,7 @@
 
 # Potential Data Sources
 
-Currently using:
+Country, state and region data by death, confirmed, recovered and lat/lng
 
 - https://datahub.io/core/covid-19
 
