@@ -17,7 +17,6 @@ def calculatePercentage(p, t):
     return 0 if t == 0 else round((p/t)*100)
 
 
-df['tested'] = list(map(lambda p, n: p+n, df['positive'], df['negative']))
 df['date'] = list(
     map(lambda s: dateutil.parser.parse(s).date(), df['dateChecked']))
 df['percent_positive'] = list(
@@ -30,6 +29,24 @@ groups = list(df.groupby('state'))
 if not os.path.exists("images"):
     os.mkdir("images")
 
+last = list(df.groupby('date'))[-1]
+last_date = last_day[0]
+last_df = last_day[1]
+states = list(last_df['state'])
+
+fig = go.Figure(data=[
+    go.Bar(name='Deceased', x=states, y=list(last_df['death'])),
+    # go.Bar(name='Hospitalized', x=states, y=list(last_df['hospitalized'])),
+    # go.Bar(name='Positive', x=states, y=list(last_df['positive'])),
+    # go.Bar(name='Negative', x=states, y=list(last_df['negative'])),
+    # go.Bar(name='Pending', x=states, y=list(last_df['pending']))
+])
+
+fig.update_layout(barmode='stack')
+fig.show()
+
+
+# Shows cummulative positive tests per day
 fig = go.Figure()
 for group in groups:
     fig.add_trace(go.Scatter(
@@ -48,10 +65,12 @@ fig.update_layout(
 
 fig.show()
 
+
+# Shows cummulative tests per day
 fig = go.Figure()
 for group in groups:
     fig.add_trace(go.Scatter(
-        x=group[1]['date'], y=group[1]['tested'], mode='lines', name=group[0]))
+        x=group[1]['date'], y=group[1]['totalTestResults'], mode='lines', name=group[0]))
 
 fig.update_layout(
     title="Total Tests",
@@ -66,7 +85,7 @@ fig.update_layout(
 
 fig.show()
 
-
+# Shows the percentage of positive tests
 fig = go.Figure()
 for group in groups:
     fig.add_trace(go.Scatter(
