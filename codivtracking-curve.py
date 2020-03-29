@@ -30,8 +30,8 @@ if not os.path.exists("images"):
     os.mkdir("images")
 
 last = list(df.groupby('date'))[-1]
-last_date = last_day[0]
-last_df = last_day[1]
+last_date = last[0]
+last_df = last[1]
 states = list(last_df['state'])
 
 fig = go.Figure(data=[
