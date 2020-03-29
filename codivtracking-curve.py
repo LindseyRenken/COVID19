@@ -114,3 +114,31 @@ fig = go.Figure(data=[
 
 fig.update_layout(barmode='stack')
 fig.show()
+
+
+# Create an offseted timeseries for passing 100 cases
+groups = list(df.groupby('state'))
+
+x_axis = list(range(0, 50))
+
+fig = go.Figure()
+for group in groups:
+    state_df = group[1][group[1]['positive'] > 200]
+    if len(list(state_df['positive'])) > 1:
+        fig.add_trace(go.Scatter(x=x_axis, y=list(state_df['positive'])[
+                      ::-1], mode='lines+markers', name=group[0]))
+    # state_df['positiveIncrease'] = group[1]['positive'] - group[1]['positive'].shift(1)
+
+fig.update_layout(
+    title="Positive Cases Since Reaching 100",
+    xaxis_title="Day since reaching 200 cases",
+    yaxis_title="Cases",
+    font=dict(
+        family="poppins",
+        size=18,
+        color="#7f7f7f"
+    )
+)
+
+fig.show()
+
