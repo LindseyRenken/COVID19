@@ -9,19 +9,20 @@ import math
 import plotly.graph_objects as go
 import os
 
-
-data = pd.read_csv("~/Downloads/time-series-19-covid-combined_csv.csv")
-data.fillna(0)
+url = 'https://datahub.io/core/covid-19/r/time-series-19-covid-combined.csv'
+s = requests.get(url).content
+df = pd.read_csv(io.StringIO(s.decode('utf-8')))
+df = df.fillna('')
 
 
 def combine(c, s):
     return c if s == '' else ', '.join([s, c])
 
 
-data['Location'] = list(
-    map(combine, data['Country/Region'], data['Province/State']))
+df['Location'] = list(
+    map(combine, df['Country/Region'], df['Province/State']))
 
-groups = list(data.groupby('Location'))
+groups = list(df.groupby('Location'))
 
 if not os.path.exists("images"):
     os.mkdir("images")
