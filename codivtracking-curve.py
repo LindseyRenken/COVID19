@@ -14,6 +14,7 @@ import requests
 import plotly.graph_objects as go
 import datetime
 import dateutil.parser
+import statistics
 
 
 url = "http://covidtracking.com/api/states/daily.csv"
@@ -116,10 +117,17 @@ fig.update_layout(barmode='stack')
 fig.show()
 
 
-# Create an offseted timeseries for passing 100 cases
+# Create an offseted timeseries for passing 200 cases
 groups = list(df.groupby('state'))
 
-x_axis = list(range(0, 50))
+x_axis = list(range(0, 30))
+
+y_25 = [200]
+y_50 = [200]
+for i in x_axis:
+    y_25.append(y_25[i]*1.25)
+    y_50.append(y_50[i]*1.50)
+
 
 fig = go.Figure()
 for group in groups:
@@ -127,11 +135,13 @@ for group in groups:
     if len(list(state_df['positive'])) > 1:
         fig.add_trace(go.Scatter(x=x_axis, y=list(state_df['positive'])[
                       ::-1], mode='lines+markers', name=group[0]))
-    # state_df['positiveIncrease'] = group[1]['positive'] - group[1]['positive'].shift(1)
+
+fig.add_trace(go.Scatter(x=x, y=y_25, mode='lines+markers', name='25 percent'))
+fig.add_trace(go.Scatter(x=x, y=y_50, mode='lines+markers', name='50 percent'))
 
 fig.update_layout(
     title="Positive Cases Since Reaching 100",
-    xaxis_title="Day since reaching 200 cases",
+    xaxis_title="Days since reaching 200 cases",
     yaxis_title="Cases",
     font=dict(
         family="poppins",
@@ -141,4 +151,40 @@ fig.update_layout(
 )
 
 fig.show()
+
+
+# emerging, expanding, contracting, steady?
+
+# emerging: between 1 and 200 active cases
+# expanding: over 200 cases and 7day average is positive growth day-on-day
+# contracting: over 200 cases and 7day average is negative growth day-on-day
+# steady?: over 200 cases and 7day average is +/- 10% day-on-day growth
+
+
+# Show percent increase in the last week
+groups = list(df.groupby('state'))
+
+today = datetime.datetime.now()
+delta = datetime.timedelta(days=7)
+cutoff = today - delta
+
+res = []
+
+for group in groups:
+    state_df = group[1][group[1]['date'] >= cutoff.date()]
+    positives = state_df['positive']
+    rates = list(map(lambda inc, tot: 100*(inc / (tot+0.001)),
+                     state_df['positiveIncrease'], state_df['positive']))
+    accelerations = [x-y for x, y in zip(rates, rates[1:])]
+    acc_avg = round(statistics.mean(accelerations), 2)
+    rate_avg = round(statistics.mean(rates), 2)
+    emerging = False
+    if list(positives)[0] <= 200:
+        emerging = True
+    res.append({'state': group[0], 'positive': list(positives)[
+               0], 'growth': rate_avg, 'acceleration': acc_avg, 'emerging': emerging})
+
+res_df = pd.DataFrame(res)
+sorted_df = res_df[res_df['emerging'] == False].sort_values(
+    ['growth'], ascending=False)
 
