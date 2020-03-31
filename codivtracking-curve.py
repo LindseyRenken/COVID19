@@ -120,7 +120,7 @@ fig.show()
 # Create an offseted timeseries for passing 200 cases
 groups = list(df.groupby('state'))
 
-x_axis = list(range(0, 30))
+x_axis = list(range(0, 20))
 
 y_25 = [200]
 y_50 = [200]
@@ -136,11 +136,13 @@ for group in groups:
         fig.add_trace(go.Scatter(x=x_axis, y=list(state_df['positive'])[
                       ::-1], mode='lines+markers', name=group[0]))
 
-fig.add_trace(go.Scatter(x=x, y=y_25, mode='lines+markers', name='25 percent'))
-fig.add_trace(go.Scatter(x=x, y=y_50, mode='lines+markers', name='50 percent'))
+fig.add_trace(go.Scatter(x=x_axis, y=y_25,
+                         mode='lines+markers', name='25 percent'))
+fig.add_trace(go.Scatter(x=x_axis, y=y_50,
+                         mode='lines+markers', name='50 percent'))
 
 fig.update_layout(
-    title="Positive Cases Since Reaching 100",
+    title="Positive Cases Since Reaching 200",
     xaxis_title="Days since reaching 200 cases",
     yaxis_title="Cases",
     font=dict(
@@ -187,4 +189,3 @@ for group in groups:
 res_df = pd.DataFrame(res)
 sorted_df = res_df[res_df['emerging'] == False].sort_values(
     ['growth'], ascending=False)
-
