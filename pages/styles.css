@@ -1,0 +1,6 @@
+@import "@rmwc/top-app-bar/styles";
+
+:root {
+  --mdc-theme-primary: #e35152;
+  --mdc-theme-secondary: #68d4f8;
+}
