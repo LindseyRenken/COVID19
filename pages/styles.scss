@@ -1,0 +1,31 @@
+@import "~@material/top-app-bar/dist/mdc.top-app-bar.css";
+@import "~@material/icon-button/dist/mdc.icon-button.css";
+@import "~@material/ripple/dist/mdc.ripple.css";
+@import "~@rmwc/icon/icon.css";
+
+:root {
+  --mdc-theme-primary: #68d4f8;
+  --mdc-theme-secondary: #68d4f8;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+
+  font-family: "Poppins", sans-serif;
+
+  background: #ececec;
+}
+
+.mdc-top-app-bar {
+  background-color: #68d4f8;
+  color: black;
+}
+
+.main-app-bar {
+  --mdc-theme-primary: #fff;
+  --mdc-theme-on-primary: #000;
+  color: #000;
+}
