@@ -1,0 +1,34 @@
+{
+  "name": "COVID19",
+  "version": "1.0.0",
+  "description": "# Potential Data Sources",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LindseyRenken/COVID19.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LindseyRenken/COVID19/issues"
+  },
+  "homepage": "https://github.com/LindseyRenken/COVID19#readme",
+  "dependencies": {
+    "@rmwc/top-app-bar": "^6.0.5",
+    "@types/styled-components": "^5.0.1",
+    "next": "^9.3.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.8",
+    "typescript": "^3.8.3"
+  }
+}
