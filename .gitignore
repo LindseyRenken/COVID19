@@ -1,5 +1,10 @@
 images/
 .DS_Store
+/node_modules
+
+# next.js
+/.next/
+/out/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
