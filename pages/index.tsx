@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
+import Charts from "../components/Chart";
 
 const Container = styled.div`
   margin: 0;
@@ -12,6 +13,7 @@ export default function Index() {
     <Container>
       <Navbar />
       {/* <p>Hello Next.js</p> */}
+      <Charts />
     </Container>
   );
 }
