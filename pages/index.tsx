@@ -6,7 +6,6 @@ import Sidebar from "../components/Sidebar";
 const Container = styled.div`
   margin: 0;
   padding: 0;
-  // background-color: white;
 `;
 
 const Main = styled.div`

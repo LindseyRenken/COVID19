@@ -11,15 +11,13 @@ import {
 import React from "react";
 
 const Container = styled.div`
-  height: calc(100vh - 85px);
+  height: calc(100vh - 69px);
   width: calc(30vw - 20px);
   overflow: auto;
   margin: 10px;
 `;
 
 const Sidebar = () => {
-  const [rows, setRows] = React.useState(0);
-  const [cols, setCols] = React.useState(0);
   const sampleColumns = Array(7).fill(undefined);
   const sampleRows = Array(50).fill(undefined);
 
@@ -27,8 +25,8 @@ const Sidebar = () => {
     <Container>
       <DataTable
         style={{ height: "100%", width: "100%" }}
-        stickyRows={rows}
-        stickyColumns={cols}
+        stickyRows={1}
+        stickyColumns={1}
       >
         <DataTableContent>
           <DataTableHead>

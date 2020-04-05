@@ -59,8 +59,9 @@ class Chart extends Component {
         id="chartdiv"
         style={{
           margin: "10px 10px 10px 0px",
-          width: "calc(70vw - 10px)",
-          height: "calc(100vh - 85px)",
+          padding: "10px",
+          width: "calc(70vw - 30px)",
+          height: "calc(100vh - 89px)",
           backgroundColor: "white",
           borderRadius: "5px",
           border: "0.5px solid #fdfdfd",
