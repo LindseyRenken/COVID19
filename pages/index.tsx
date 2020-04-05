@@ -1,19 +1,27 @@
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
-import Charts from "../components/Chart";
+import Chart from "../components/Chart";
+import Sidebar from "../components/Sidebar";
 
 const Container = styled.div`
   margin: 0;
   padding: 0;
-  background-color: white;
+  // background-color: white;
+`;
+
+const Main = styled.div`
+  display: felx;
+  justify-content: center;
 `;
 
 export default function Index() {
   return (
     <Container>
       <Navbar />
-      {/* <p>Hello Next.js</p> */}
-      <Charts />
+      <Main>
+        <Sidebar />
+        <Chart />
+      </Main>
     </Container>
   );
 }

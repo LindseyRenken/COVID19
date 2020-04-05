@@ -991,6 +991,39 @@
   dependencies:
     tslib "^1.9.3"
 
+"@material/checkbox@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@material/checkbox/-/checkbox-5.1.0.tgz#2f689f6a409f0ed906a0d73bcd0078a768eaf9d1"
+  integrity sha512-NwpWxFdWrZNlSjcSEEcGz8UN7ZQ5k8VthExclJnawpYGPUnCPLTXWogREnA2Tyl22PJ6jOy8Ejb8tnpu2rSiaw==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/density" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/touch-target" "^5.1.0"
+    tslib "^1.9.3"
+
+"@material/data-table@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@material/data-table/-/data-table-5.1.0.tgz#4c15a0a18f7ee6d8dba77e435d4fbe064fe1f009"
+  integrity sha512-vjijTvCHM7sfyPzQ05026nSWT1Bn/3lfj1u0oeYRnym6Ke6Os36x+IF/jFhjsraXKb2we6cof7OdoMFHCU8cqQ==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/checkbox" "^5.1.0"
+    "@material/density" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/elevation" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/typography" "^5.1.0"
+    tslib "^1.10.0"
+
 "@material/density@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@material/density/-/density-5.1.0.tgz#d36512d413a00595122f98303766dae6b9e9fabe"
@@ -1077,6 +1110,14 @@
     "@material/typography" "^5.1.0"
     tslib "^1.9.3"
 
+"@material/touch-target@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@material/touch-target/-/touch-target-5.1.0.tgz#0e03ba901acf118c91eb4cfa02034964424565a2"
+  integrity sha512-lR3eoL1D0I/hyEK6I7bMFDBy/pE0yYvjYUZtL1vC7+2i54A4FgQ2hwnpQJVaZQXzrHdj6xsXmODphmUsH5gqPA==
+  dependencies:
+    "@material/base" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+
 "@material/typography@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-5.1.0.tgz#b346f4139b231f17c84c439a1c7af311c40c5844"
@@ -1101,6 +1142,27 @@
     mutation-observer "^1.0.3"
     tslib "^1.10.0"
 
+"@rmwc/base@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@rmwc/base/-/base-6.0.9.tgz#ac3d8578c18bc67ba49c44905b8b13603dfcd994"
+  integrity sha512-OxTKQQHgY0mAzt8nhcIGBw5GIOfScHyk0JPaaAjExHgf7J6v2lLFT7hdki0qU8GwfCRc91lanTKTz55dik2RNg==
+  dependencies:
+    "@rmwc/types" "^6.0.5"
+    classnames "^2.2.6"
+    hyperform "^0.9.9"
+    mutation-observer "^1.0.3"
+    tslib "^1.10.0"
+
+"@rmwc/data-table@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@rmwc/data-table/-/data-table-6.0.9.tgz#d425b977285d404b0984a01ee48de11c12662469"
+  integrity sha512-iPOP8soaqcLfY/4LNKJewOeyHEtY/dPmQ4Iz0KG/GP+Ber9/l7wdP+6jArycDxdEGtJeJxK+sX37ShqE5Zu6Og==
+  dependencies:
+    "@material/data-table" "^5.1.0"
+    "@rmwc/base" "^6.0.9"
+    "@rmwc/icon" "^6.0.9"
+    "@rmwc/types" "^6.0.5"
+
 "@rmwc/icon-button@^6.0.5":
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@rmwc/icon-button/-/icon-button-6.0.5.tgz#dd8d0c84dd1bf492a5c966c76bdc6b4a90139e1a"
@@ -1121,12 +1183,29 @@
     "@rmwc/provider" "^6.0.5"
     "@rmwc/types" "^6.0.5"
 
+"@rmwc/icon@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@rmwc/icon/-/icon-6.0.9.tgz#35ca2fdb130f119ca14423fa7de18a804ee1e071"
+  integrity sha512-aBnwqD7JPhVRH/c1kj3PtqQHAWUdjvTbeSG/p5Zz951k4DTAjEqJF8n+DG8MYvjZ5jbU4D6K4oxA7MA0l0770w==
+  dependencies:
+    "@rmwc/base" "^6.0.9"
+    "@rmwc/provider" "^6.0.9"
+    "@rmwc/types" "^6.0.5"
+
 "@rmwc/provider@^6.0.5":
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@rmwc/provider/-/provider-6.0.5.tgz#6b33b1b202854f96190d69fc69273001c11ea807"
   integrity sha512-BSKKtpwKvhqSFjRJtt+4Bzsu8euwv33zUhnBFhx9kB3bGprvX1Ul54DK7DQtBUh3gZ0RWnXqJwJI6siZw6/hYQ==
   dependencies:
     "@rmwc/base" "^6.0.5"
+    "@rmwc/types" "^6.0.5"
+
+"@rmwc/provider@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@rmwc/provider/-/provider-6.0.9.tgz#11bb6fc53855030b8033d9dd9da395e08731df36"
+  integrity sha512-Dth/NnqrdjLhjjqA8ZqoJrvIUk2hTfqG5Gcoia9CO0MGLG2RrB3MqwoY71zvce0Z0mZqu5mEzej5yF5tXx8v3w==
+  dependencies:
+    "@rmwc/base" "^6.0.9"
     "@rmwc/types" "^6.0.5"
 
 "@rmwc/ripple@^6.0.5":

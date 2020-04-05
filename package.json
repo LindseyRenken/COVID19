@@ -21,6 +21,7 @@
   "homepage": "https://github.com/LindseyRenken/COVID19#readme",
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.12",
+    "@rmwc/data-table": "^6.0.9",
     "@rmwc/theme": "^6.0.5",
     "@rmwc/top-app-bar": "^6.0.5",
     "@types/styled-components": "^5.0.1",
