@@ -17,8 +17,12 @@ const Container = styled.div`
   margin: 10px;
 `;
 
-const Sidebar = () => {
-  const sampleColumns = Array(7).fill(undefined);
+interface Props {
+  data: any;
+}
+
+const Sidebar = ({ data }: Props) => {
+  const sampleColumns = ["Positive", "Increase", "Deceased", "Death Rate"];
   const sampleRows = Array(50).fill(undefined);
 
   return (
@@ -31,23 +35,20 @@ const Sidebar = () => {
         <DataTableContent>
           <DataTableHead>
             <DataTableRow>
-              <DataTableHeadCell>Label</DataTableHeadCell>
+              <DataTableHeadCell>Region</DataTableHeadCell>
               {sampleColumns.map((v, i) => (
-                <DataTableHeadCell key={i}>Header</DataTableHeadCell>
+                <DataTableHeadCell key={i}>{v}</DataTableHeadCell>
               ))}
             </DataTableRow>
           </DataTableHead>
           <DataTableBody>
-            {sampleRows.map((v, i) => (
+            {data.map((v, i) => (
               <DataTableRow key={i}>
-                <DataTableCell>Label</DataTableCell>
-                <DataTableCell>R{i} C1</DataTableCell>
-                <DataTableCell>R{i} C2</DataTableCell>
-                <DataTableCell>R{i} C3</DataTableCell>
+                <DataTableCell>{v.state}</DataTableCell>
+                <DataTableCell>{v.positive}</DataTableCell>
+                <DataTableCell>{v.positiveIncrease}</DataTableCell>
+                <DataTableCell>{v.death}</DataTableCell>
                 <DataTableCell>R{i} C4</DataTableCell>
-                <DataTableCell>R{i} C5</DataTableCell>
-                <DataTableCell>R{i} C6</DataTableCell>
-                <DataTableCell>R{i} C7</DataTableCell>
               </DataTableRow>
             ))}
           </DataTableBody>

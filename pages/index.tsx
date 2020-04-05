@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Chart from "../components/Chart";
 import Sidebar from "../components/Sidebar";
+import fetch from "isomorphic-unfetch";
 
 const Container = styled.div`
   margin: 0;
@@ -13,14 +14,25 @@ const Main = styled.div`
   justify-content: center;
 `;
 
-export default function Index() {
+const Page = function Index(props) {
+  console.log("props:", props);
   return (
     <Container>
       <Navbar />
       <Main>
-        <Sidebar />
+        <Sidebar data={props.data} />
         <Chart />
       </Main>
     </Container>
   );
-}
+};
+
+Page.getInitialProps = async () => {
+  const url = "https://covidtracking.com/api/v1/states/daily.json";
+  const data = await fetch(url).then((res) => res.json());
+  return {
+    data,
+  };
+};
+
+export default Page;
