@@ -5,7 +5,7 @@ import { Component } from "react";
 
 am4core.useTheme(am4themes_animated);
 
-class Charts extends Component {
+class Chart extends Component {
   chart: am4charts.XYChart;
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class Charts extends Component {
       data.push({
         date: new Date(2018, 0, i),
         name: "name" + i,
-        value: visits
+        value: visits,
       });
     }
 
@@ -40,9 +40,9 @@ class Charts extends Component {
     series.tooltipText = "{valueY.value}";
     chart.cursor = new am4charts.XYCursor();
 
-    let scrollbarX = new am4charts.XYChartScrollbar();
-    scrollbarX.series.push(series);
-    chart.scrollbarX = scrollbarX;
+    // let scrollbarX = new am4charts.XYChartScrollbar();
+    // scrollbarX.series.push(series);
+    // chart.scrollbarX = scrollbarX;
 
     this.chart = chart;
   }
@@ -54,8 +54,20 @@ class Charts extends Component {
   }
 
   render() {
-    return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
+    return (
+      <div
+        id="chartdiv"
+        style={{
+          margin: "10px 10px 10px 0px",
+          width: "calc(70vw - 10px)",
+          height: "calc(100vh - 85px)",
+          backgroundColor: "white",
+          borderRadius: "5px",
+          border: "0.5px solid #fdfdfd",
+        }}
+      ></div>
+    );
   }
 }
 
-export default Charts;
+export default Chart;
