@@ -22,7 +22,7 @@ interface Props {
 }
 
 const Sidebar = ({ data }: Props) => {
-  const sampleColumns = ["Positive", "Increase", "Deceased", "Death Rate"];
+  const sampleColumns = ["Positive", "Increase", "Deaths", "Death Rate"];
 
   return (
     <Container>
