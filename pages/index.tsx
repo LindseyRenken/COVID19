@@ -25,19 +25,31 @@ const Page = function Index(props) {
     combined.push({
       state: s,
       points: data
-        .filter((d) => d.state == s && d.positive > 200)
+        .filter((d) => d.state == s && d.positive > 500)
         .map((d) => d.positive)
         .reverse(),
     });
   });
-  console.log(sidebar_data);
+  const lengths: number[] = combined.map((v) => v.points.length ?? 0);
+  const max_length = Math.max(...lengths);
+  // console.log(max_length);
+  let res = [];
+  for (let i = 0; i < max_length; i++) {
+    res.push({ day: i });
+  }
+  combined.forEach((v) => {
+    v.points.forEach((el, i) => {
+      res[i][v.state] = Math.log(el);
+    });
+  });
+  // console.log(res);
 
   return (
     <Container>
       <Navbar />
       <Main>
         <Sidebar data={sidebar_data} />
-        <Chart data={combined} />
+        <Chart data={res} states={states} />
       </Main>
     </Container>
   );
