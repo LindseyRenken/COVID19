@@ -12,7 +12,7 @@ import React from "react";
 
 const Container = styled.div`
   height: calc(100vh - 69px);
-  width: calc(30vw - 20px);
+  width: calc(35vw - 20px);
   overflow: auto;
   margin: 10px;
 `;
@@ -23,7 +23,6 @@ interface Props {
 
 const Sidebar = ({ data }: Props) => {
   const sampleColumns = ["Positive", "Increase", "Deceased", "Death Rate"];
-  const sampleRows = Array(50).fill(undefined);
 
   return (
     <Container>
@@ -35,7 +34,7 @@ const Sidebar = ({ data }: Props) => {
         <DataTableContent>
           <DataTableHead>
             <DataTableRow>
-              <DataTableHeadCell>Region</DataTableHeadCell>
+              <DataTableHeadCell>State</DataTableHeadCell>
               {sampleColumns.map((v, i) => (
                 <DataTableHeadCell key={i}>{v}</DataTableHeadCell>
               ))}
@@ -45,10 +44,14 @@ const Sidebar = ({ data }: Props) => {
             {data.map((v, i) => (
               <DataTableRow key={i}>
                 <DataTableCell>{v.state}</DataTableCell>
-                <DataTableCell>{v.positive}</DataTableCell>
-                <DataTableCell>{v.positiveIncrease}</DataTableCell>
-                <DataTableCell>{v.death}</DataTableCell>
-                <DataTableCell>R{i} C4</DataTableCell>
+                <DataTableCell>{v.positive.toLocaleString("en")}</DataTableCell>
+                <DataTableCell>
+                  {v.positiveIncrease.toLocaleString("en")}
+                </DataTableCell>
+                <DataTableCell>{v.death.toLocaleString("en")}</DataTableCell>
+                <DataTableCell>
+                  {(100 * (v.death / v.positive)).toFixed(2)}%
+                </DataTableCell>
               </DataTableRow>
             ))}
           </DataTableBody>
