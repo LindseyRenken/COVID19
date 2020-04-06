@@ -15,13 +15,29 @@ const Main = styled.div`
 `;
 
 const Page = function Index(props) {
-  console.log("props:", props);
+  const data = props.data;
+  const sidebar_data = data
+    .slice(0, 56)
+    .sort((a, b) => (a.positive > b.positive ? -1 : 1));
+  const states = data.slice(0, 56).map((v) => v.state);
+  let combined = [];
+  states.forEach((s) => {
+    combined.push({
+      state: s,
+      points: data
+        .filter((d) => d.state == s && d.positive > 200)
+        .map((d) => d.positive)
+        .reverse(),
+    });
+  });
+  console.log(sidebar_data);
+
   return (
     <Container>
       <Navbar />
       <Main>
-        <Sidebar data={props.data} />
-        <Chart />
+        <Sidebar data={sidebar_data} />
+        <Chart data={combined} />
       </Main>
     </Container>
   );
