@@ -16,49 +16,63 @@ class Chart extends Component<Props, {}> {
   componentDidMount() {
     let chart = am4core.create("chartdiv", am4charts.XYChart);
 
-    chart.paddingRight = 40;
-
-    // let data = [];
-    // let visits = 10;
-    // for (let i = 1; i < 366; i++) {
-    //   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-    //   data.push({
-    //     date: new Date(2018, 0, i),
-    //     name: "name" + i,
-    //     value: visits,
-    //     value2: visits + 10,
-    //   });
-    // }
+    // chart.paddingRight = 40;
 
     chart.data = this.props.data;
     // chart.data = data;
 
-    let dateAxis = chart.xAxes.push(new am4charts.ValueAxis());
+    let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
-    valueAxis.renderer.minWidth = 35;
+    // valueAxis.renderer.minWidth = 35;
 
     chart.cursor = new am4charts.XYCursor();
+    chart.cursor.maxTooltipDistance = -1;
 
     this.props.states.forEach((v) => {
       let series = chart.series.push(new am4charts.LineSeries());
-      series.dataFields.valueX = "day";
+      var bullet = series.bullets.push(new am4charts.Bullet());
+      let circle = bullet.createChild(am4core.Circle);
+      circle.width = 3;
+      circle.height = 3;
+      series.dataFields.dateX = "day";
       series.dataFields.valueY = v;
 
       series.tooltipText = v + ": {valueY.value}";
     });
 
-    // series = chart.series.push(new am4charts.LineSeries());
-    // series.dataFields.dateX = "date";
-    // series.dataFields.valueY = "value2";
+    var buttonContainer = chart.plotContainer.createChild(am4core.Container);
+    buttonContainer.shouldClone = false;
+    buttonContainer.align = "left";
+    buttonContainer.valign = "top";
+    buttonContainer.zIndex = Number.MAX_SAFE_INTEGER;
+    buttonContainer.marginTop = 20;
+    buttonContainer.marginLeft = 20;
+    buttonContainer.layout = "horizontal";
 
-    // series.tooltipText = "{valueY.value}";
+    var zoomInButton = buttonContainer.createChild(am4core.Button);
+    zoomInButton.label.text = "+";
+    zoomInButton.events.on("hit", function (ev) {
+      var diff = dateAxis.maxZoomed - dateAxis.minZoomed;
+      var delta = diff * 0.2;
+      dateAxis.zoomToDates(
+        new Date(dateAxis.minZoomed + delta),
+        new Date(dateAxis.maxZoomed - delta)
+      );
+    });
 
-    // let scrollbarX = new am4charts.XYChartScrollbar();
-    // scrollbarX.series.push(series);
-    // chart.scrollbarX = scrollbarX;
+    var zoomOutButton = buttonContainer.createChild(am4core.Button);
+    zoomOutButton.label.text = "-";
+    zoomOutButton.events.on("hit", function (ev) {
+      var diff = dateAxis.maxZoomed - dateAxis.minZoomed;
+      var delta = diff * 0.2;
+      dateAxis.zoomToDates(
+        new Date(dateAxis.minZoomed - delta),
+        new Date(dateAxis.maxZoomed + delta)
+      );
+    });
 
     this.chart = chart;
   }
