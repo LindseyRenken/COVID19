@@ -16,7 +16,7 @@ class Chart extends Component<Props, {}> {
   componentDidMount() {
     let chart = am4core.create("chartdiv", am4charts.XYChart);
 
-    // chart.paddingRight = 40;
+    chart.paddingTop = 30;
 
     chart.data = this.props.data;
     // chart.data = data;
@@ -48,7 +48,7 @@ class Chart extends Component<Props, {}> {
     buttonContainer.align = "left";
     buttonContainer.valign = "top";
     buttonContainer.zIndex = Number.MAX_SAFE_INTEGER;
-    buttonContainer.marginTop = 20;
+    buttonContainer.marginTop = 5;
     buttonContainer.marginLeft = 20;
     buttonContainer.layout = "horizontal";
 
@@ -89,9 +89,9 @@ class Chart extends Component<Props, {}> {
         id="chartdiv"
         style={{
           margin: "10px 10px 10px 0px",
-          padding: "10px",
-          width: "calc(65vw - 30px)",
-          height: "calc(100vh - 89px)",
+          // padding: "10px",
+          width: "calc(65vw - 10px)",
+          height: "calc(100vh - 70px)",
           backgroundColor: "white",
           borderRadius: "5px",
           border: "0.5px solid #fdfdfd",
