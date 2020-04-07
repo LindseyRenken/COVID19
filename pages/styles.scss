@@ -6,6 +6,10 @@
 @import "~@material/data-table/dist/mdc.data-table.css";
 @import "~@rmwc/data-table/data-table.css";
 
+@import "~@material/checkbox/dist/mdc.checkbox.css";
+@import "~@material/form-field/dist/mdc.form-field.css";
+@import "~@material/ripple/dist/mdc.ripple.css";
+
 :root {
   --mdc-theme-primary: #68d4f8;
   --mdc-theme-secondary: #68d4f8;

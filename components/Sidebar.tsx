@@ -8,6 +8,9 @@ import {
   DataTableHeadCell,
   DataTableCell,
 } from "@rmwc/data-table";
+
+import { Checkbox } from "@rmwc/checkbox";
+
 import React from "react";
 
 const Container = styled.div`
@@ -15,6 +18,7 @@ const Container = styled.div`
   width: calc(35vw - 20px);
   overflow: auto;
   margin: 10px;
+  text-align: center;
 `;
 
 interface Props {
@@ -22,7 +26,19 @@ interface Props {
 }
 
 const Sidebar = ({ data }: Props) => {
-  const sampleColumns = ["Positive", "24h Increase", "Deaths", "Death Rate"];
+  const sampleColumns = [
+    "Positive",
+    "24h Increase",
+    "Death Rate",
+    "Deaths",
+    "Hospitalized",
+    "In ICU",
+    "Recovered",
+    "Negative",
+    "Tested",
+  ];
+
+  const [checked, setChecked] = React.useState({});
 
   return (
     <Container>
@@ -34,6 +50,15 @@ const Sidebar = ({ data }: Props) => {
         <DataTableContent>
           <DataTableHead>
             <DataTableRow>
+              <DataTableHeadCell>
+                <Checkbox
+                  checked={checked[0]}
+                  onChange={(evt) => {
+                    checked[0] = evt.currentTarget.checked;
+                    setChecked({ ...checked });
+                  }}
+                />
+              </DataTableHeadCell>
               <DataTableHeadCell>State</DataTableHeadCell>
               {sampleColumns.map((v, i) => (
                 <DataTableHeadCell key={i}>{v}</DataTableHeadCell>
@@ -43,16 +68,39 @@ const Sidebar = ({ data }: Props) => {
           <DataTableBody>
             {data.map((v, i) => (
               <DataTableRow key={i}>
+                <DataTableCell>
+                  <Checkbox
+                    checked={checked[i + 1]}
+                    onChange={(evt) => {
+                      checked[i + 1] = evt.currentTarget.checked;
+                      setChecked({ ...checked });
+                    }}
+                  />
+                </DataTableCell>
+
                 <DataTableCell>{v.state}</DataTableCell>
                 <DataTableCell>{v.positive.toLocaleString("en")}</DataTableCell>
                 <DataTableCell>
                   {v.positiveIncrease.toLocaleString("en")} (
                   {(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
                 </DataTableCell>
-                <DataTableCell>{v.death.toLocaleString("en")}</DataTableCell>
                 <DataTableCell>
                   {(100 * (v.death / v.positive)).toFixed(2)}%
                 </DataTableCell>
+                <DataTableCell>{v.death.toLocaleString("en")}</DataTableCell>
+                <DataTableCell>
+                  {v.hospitalizedCurrently?.toLocaleString("en")}
+                </DataTableCell>
+                <DataTableCell>
+                  {v.inIcuCurrently?.toLocaleString("en")}
+                </DataTableCell>
+                <DataTableCell>
+                  {v.recovered?.toLocaleString("en")}
+                </DataTableCell>
+                <DataTableCell>
+                  {v.negative?.toLocaleString("en")}
+                </DataTableCell>
+                <DataTableCell>{v.total?.toLocaleString("en")}</DataTableCell>
               </DataTableRow>
             ))}
           </DataTableBody>

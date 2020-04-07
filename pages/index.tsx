@@ -15,6 +15,7 @@ const Main = styled.div`
 `;
 
 const Page = function Index(props) {
+  console.log(props.data);
   const data = props.data;
   const sidebar_data = data
     .slice(0, 56)
