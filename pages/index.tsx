@@ -25,7 +25,7 @@ const Page = function Index(props) {
     combined.push({
       state: s,
       points: data
-        .filter((d) => d.state == s && d.positive > 500)
+        .filter((d) => d.state == s && d.positive > 200)
         .map((d) => d.positive)
         .reverse(),
     });
@@ -39,7 +39,7 @@ const Page = function Index(props) {
   }
   combined.forEach((v) => {
     v.points.forEach((el, i) => {
-      res[i][v.state] = Math.log(el);
+      res[i][v.state] = el;
     });
   });
   // console.log(res);

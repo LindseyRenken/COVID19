@@ -33,12 +33,14 @@ class Chart extends Component<Props, {}> {
     chart.data = this.props.data;
     // chart.data = data;
 
-    let dateAxis = chart.xAxes.push(new am4charts.DurationAxis());
+    let dateAxis = chart.xAxes.push(new am4charts.ValueAxis());
     dateAxis.renderer.grid.template.location = 0;
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.renderer.minWidth = 35;
+
+    chart.cursor = new am4charts.XYCursor();
 
     this.props.states.forEach((v) => {
       let series = chart.series.push(new am4charts.LineSeries());
@@ -53,8 +55,6 @@ class Chart extends Component<Props, {}> {
     // series.dataFields.valueY = "value2";
 
     // series.tooltipText = "{valueY.value}";
-
-    chart.cursor = new am4charts.XYCursor();
 
     // let scrollbarX = new am4charts.XYChartScrollbar();
     // scrollbarX.series.push(series);

@@ -22,7 +22,7 @@ interface Props {
 }
 
 const Sidebar = ({ data }: Props) => {
-  const sampleColumns = ["Positive", "Increase", "Deaths", "Death Rate"];
+  const sampleColumns = ["Positive", "24h Increase", "Deaths", "Death Rate"];
 
   return (
     <Container>
@@ -46,7 +46,8 @@ const Sidebar = ({ data }: Props) => {
                 <DataTableCell>{v.state}</DataTableCell>
                 <DataTableCell>{v.positive.toLocaleString("en")}</DataTableCell>
                 <DataTableCell>
-                  {v.positiveIncrease.toLocaleString("en")}
+                  {v.positiveIncrease.toLocaleString("en")} (
+                  {(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>{v.death.toLocaleString("en")}</DataTableCell>
                 <DataTableCell>

@@ -120,7 +120,7 @@ fig.show()
 # Create an offseted timeseries for passing 200 cases
 groups = list(df.groupby('state'))
 
-x_axis = list(range(0, 20))
+x_axis = list(range(0, 30))
 
 y_25 = [200]
 y_50 = [200]
