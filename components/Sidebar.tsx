@@ -29,7 +29,6 @@ const Sidebar = ({ data }: Props) => {
   const sampleColumns = [
     "Positive",
     "24h Increase",
-    "Death Rate",
     "Deaths",
     "Hospitalized",
     "In ICU",
@@ -85,17 +84,20 @@ const Sidebar = ({ data }: Props) => {
                   {(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>
-                  {(100 * (v.death / v.positive)).toFixed(2)}%
-                </DataTableCell>
-                <DataTableCell>{v.death.toLocaleString("en")}</DataTableCell>
-                <DataTableCell>
-                  {v.hospitalizedCurrently?.toLocaleString("en")}
+                  {v.death.toLocaleString("en")} (
+                  {(100 * (v.death / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>
-                  {v.inIcuCurrently?.toLocaleString("en")}
+                  {v.hospitalizedCumulative?.toLocaleString("en")} (
+                  {(100 * (v.hospitalizedCumulative / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>
-                  {v.recovered?.toLocaleString("en")}
+                  {v.inIcuCurrently?.toLocaleString("en")} (
+                  {(100 * (v.inIcuCurrently / v.positive)).toFixed(2)}%)
+                </DataTableCell>
+                <DataTableCell>
+                  {v.recovered?.toLocaleString("en")} (
+                  {(100 * (v.recovered / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>
                   {v.negative?.toLocaleString("en")}
