@@ -9,16 +9,18 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 
-import { Checkbox } from "@rmwc/checkbox";
-
 import React from "react";
 
 const Container = styled.div`
   height: calc(100vh - 69px);
-  width: calc(35vw - 20px);
+  // width: calc(35vw - 20px);
+
+  width: calc(100vw - 20px);
   overflow: auto;
   margin: 10px;
   text-align: center;
+  // align-items: center;
+  // justify-content: center;
 `;
 
 interface Props {
@@ -26,19 +28,6 @@ interface Props {
 }
 
 const Sidebar = ({ data }: Props) => {
-  const sampleColumns = [
-    "Positive",
-    "24h Increase",
-    "Deaths",
-    "Hospitalized",
-    "In ICU",
-    "Recovered",
-    "Negative",
-    "Tested",
-  ];
-
-  const [checked, setChecked] = React.useState({});
-
   return (
     <Container>
       <DataTable
@@ -49,42 +38,59 @@ const Sidebar = ({ data }: Props) => {
         <DataTableContent>
           <DataTableHead>
             <DataTableRow>
-              <DataTableHeadCell>
-                <Checkbox
-                  checked={checked[0]}
-                  onChange={(evt) => {
-                    checked[0] = evt.currentTarget.checked;
-                    setChecked({ ...checked });
-                  }}
-                />
+              <DataTableHeadCell alignMiddle={true}>State</DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_1"}>
+                Total
               </DataTableHeadCell>
-              <DataTableHeadCell>State</DataTableHeadCell>
-              {sampleColumns.map((v, i) => (
-                <DataTableHeadCell key={i}>{v}</DataTableHeadCell>
-              ))}
+              <DataTableHeadCell alignMiddle={true} key={"header_2"}>
+                Negative
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_3"}>
+                Positive
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+                Pending
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+                24h Positive Increase
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+                Deaths
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+                Hospitalizations
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+                In ICU
+              </DataTableHeadCell>
+              <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+                Recovered
+              </DataTableHeadCell>
             </DataTableRow>
           </DataTableHead>
           <DataTableBody>
             {data.map((v, i) => (
               <DataTableRow key={i}>
-                <DataTableCell>
-                  <Checkbox
-                    checked={checked[i + 1]}
-                    onChange={(evt) => {
-                      checked[i + 1] = evt.currentTarget.checked;
-                      setChecked({ ...checked });
-                    }}
-                  />
-                </DataTableCell>
-
                 <DataTableCell>{v.state}</DataTableCell>
-                <DataTableCell>{v.positive.toLocaleString("en")}</DataTableCell>
+                <DataTableCell>{v.total?.toLocaleString("en")}</DataTableCell>
                 <DataTableCell>
-                  {v.positiveIncrease.toLocaleString("en")} (
+                  {v.negative?.toLocaleString("en")} (
+                  {(100 * (v.negative / v.total)).toFixed(2)}%)
+                </DataTableCell>
+                <DataTableCell>
+                  {v.positive?.toLocaleString("en")} (
+                  {(100 * (v.positive / v.total)).toFixed(2)}%)
+                </DataTableCell>
+                <DataTableCell>
+                  {v.pending?.toLocaleString("en")} (
+                  {(100 * (v.pending / v.total)).toFixed(2)}%)
+                </DataTableCell>
+                <DataTableCell>
+                  {v.positiveIncrease?.toLocaleString("en")} (
                   {(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>
-                  {v.death.toLocaleString("en")} (
+                  {v.death?.toLocaleString("en")} (
                   {(100 * (v.death / v.positive)).toFixed(2)}%)
                 </DataTableCell>
                 <DataTableCell>
@@ -99,10 +105,6 @@ const Sidebar = ({ data }: Props) => {
                   {v.recovered?.toLocaleString("en")} (
                   {(100 * (v.recovered / v.positive)).toFixed(2)}%)
                 </DataTableCell>
-                <DataTableCell>
-                  {v.negative?.toLocaleString("en")}
-                </DataTableCell>
-                <DataTableCell>{v.total?.toLocaleString("en")}</DataTableCell>
               </DataTableRow>
             ))}
           </DataTableBody>

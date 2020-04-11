@@ -10,8 +10,8 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-  display: felx;
-  justify-content: center;
+  // display: felx;
+  // justify-content: center;
 `;
 
 const Page = function Index(props) {
@@ -50,7 +50,7 @@ const Page = function Index(props) {
       <Navbar />
       <Main>
         <Sidebar data={sidebar_data} />
-        <Chart data={res} states={states} />
+        {/* <Chart data={res} states={states} /> */}
       </Main>
     </Container>
   );

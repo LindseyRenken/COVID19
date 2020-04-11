@@ -89,7 +89,6 @@ class Chart extends Component<Props, {}> {
         id="chartdiv"
         style={{
           margin: "10px 10px 10px 0px",
-          // padding: "10px",
           width: "calc(65vw - 10px)",
           height: "calc(100vh - 70px)",
           backgroundColor: "white",
