@@ -1,12 +1,13 @@
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Chart from "../components/Chart";
-import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
 import fetch from "isomorphic-unfetch";
 
 const Container = styled.div`
   margin: 0;
   padding: 0;
+  height: 100vh;
 `;
 
 const Main = styled.div`
@@ -49,7 +50,7 @@ const Page = function Index(props) {
     <Container>
       <Navbar />
       <Main>
-        <Sidebar data={sidebar_data} />
+        <Table data={sidebar_data} />
         {/* <Chart data={res} states={states} /> */}
       </Main>
     </Container>
