@@ -1,10 +1,20 @@
-import {
-  TopAppBar,
+import TopAppBar, {
+  TopAppBarIcon,
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarTitle,
   TopAppBarFixedAdjust,
-} from "@rmwc/top-app-bar";
+} from "@material/react-top-app-bar";
+
+import Link from "next/link";
+
+import styled from "styled-components";
+
+const MenuItem = styled.a`
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 20px;
+`;
 
 const Navbar = () => (
   <>
@@ -13,6 +23,13 @@ const Navbar = () => (
         <TopAppBarSection>
           <TopAppBarTitle>The Covid Curve</TopAppBarTitle>
         </TopAppBarSection>
+        {/* <TopAppBarSection align="end">
+          <TopAppBarIcon>
+            <Link href="/testing">
+              <MenuItem>Testing</MenuItem>
+            </Link>
+          </TopAppBarIcon>
+        </TopAppBarSection> */}
       </TopAppBarRow>
     </TopAppBar>
     <TopAppBarFixedAdjust dense />
