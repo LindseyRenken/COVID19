@@ -6,6 +6,8 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 
+import { StyledCell } from "./Table";
+
 interface Props {
   data: any;
 }
@@ -15,19 +17,38 @@ const Active = ({ data }: Props) => {
     <>
       <DataTableHead>
         <DataTableRow>
-          <DataTableHeadCell style={{ width: "150px" }} alignMiddle={true}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold", width: "150px" }}
+            alignMiddle={true}
+          >
             State
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_8"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_1"}
+          >
             Recovering
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_10"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_2"}
+          >
             Hospitalized
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_9"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_3"}
+          >
             In ICU
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_11"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_4"}
+          >
             On Ventilator
           </DataTableHeadCell>
         </DataTableRow>
@@ -35,32 +56,64 @@ const Active = ({ data }: Props) => {
       <DataTableBody>
         {data.map((v, i) => (
           <DataTableRow key={i}>
-            <DataTableCell style={{ width: "150px" }}>{v.state}</DataTableCell>
+            <DataTableCell
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "150px",
+              }}
+            >
+              {/* <img
+                style={{
+                  margin: "0px 10px",
+                  height: "20px",
+                }}
+                src={"/" + v.state + ".svg"}
+              /> */}
+              {v.state}
+            </DataTableCell>
             <DataTableCell>
               {(v.positive - v.recovered)?.toLocaleString("en")}
             </DataTableCell>
             <DataTableCell>
-              {v.hospitalizedCurrently?.toLocaleString("en")} (
-              {(
-                100 *
-                (v.hospitalizedCurrently / (v.positive - v.recovered))
-              ).toFixed(2)}
-              %)
+              <StyledCell>
+                {v.hospitalizedCurrently?.toLocaleString("en")}
+                <div>
+                  (
+                  {(
+                    100 *
+                    (v.hospitalizedCurrently / (v.positive - v.recovered))
+                  ).toFixed(2)}
+                  %)
+                </div>
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              {v.inIcuCurrently?.toLocaleString("en")} (
-              {(100 * (v.inIcuCurrently / (v.positive - v.recovered))).toFixed(
-                2
-              )}
-              %)
+              <StyledCell>
+                {v.inIcuCurrently?.toLocaleString("en")}
+                <div>
+                  (
+                  {(
+                    100 *
+                    (v.inIcuCurrently / (v.positive - v.recovered))
+                  ).toFixed(2)}
+                  %)
+                </div>
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              {v.onVentilatorCurrently?.toLocaleString("en")} (
-              {(
-                100 *
-                (v.onVentilatorCurrently / (v.positive - v.recovered))
-              ).toFixed(2)}
-              %)
+              <StyledCell>
+                {v.onVentilatorCurrently?.toLocaleString("en")}
+                <div>
+                  (
+                  {(
+                    100 *
+                    (v.onVentilatorCurrently / (v.positive - v.recovered))
+                  ).toFixed(2)}
+                  %)
+                </div>
+              </StyledCell>
             </DataTableCell>
           </DataTableRow>
         ))}

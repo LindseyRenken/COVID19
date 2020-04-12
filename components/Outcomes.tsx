@@ -5,6 +5,7 @@ import {
   DataTableHeadCell,
   DataTableCell,
 } from "@rmwc/data-table";
+import { StyledCell } from "./Table";
 
 interface Props {
   data: any;
@@ -15,19 +16,38 @@ const Outcomes = ({ data }: Props) => {
     <>
       <DataTableHead>
         <DataTableRow>
-          <DataTableHeadCell style={{ width: "150px" }} alignMiddle={true}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold", width: "150px" }}
+            alignMiddle={true}
+          >
             State
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_9"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_1"}
+          >
             Recovered
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_6"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_2"}
+          >
             Deaths
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_7"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_3"}
+          >
             Hospitalizations
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_8"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_4"}
+          >
             Admitted to ICU
           </DataTableHeadCell>
         </DataTableRow>
@@ -35,22 +55,51 @@ const Outcomes = ({ data }: Props) => {
       <DataTableBody>
         {data.map((v, i) => (
           <DataTableRow key={i}>
-            <DataTableCell style={{ width: "150px" }}>{v.state}</DataTableCell>
-            <DataTableCell>
-              {v.recovered?.toLocaleString("en")} (
-              {(100 * (v.recovered / v.positive)).toFixed(2)}%)
+            <DataTableCell
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "150px",
+              }}
+            >
+              {/* <img
+                style={{
+                  margin: "0px 10px",
+                  height: "20px",
+                }}
+                src={"/" + v.state + ".svg"}
+              /> */}
+              {v.state}
             </DataTableCell>
             <DataTableCell>
-              {v.death?.toLocaleString("en")} (
-              {(100 * (v.death / v.positive)).toFixed(2)}%)
+              <StyledCell>
+                {v.recovered?.toLocaleString("en")}
+                <div>({(100 * (v.recovered / v.positive)).toFixed(2)}%)</div>
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              {v.hospitalizedCumulative?.toLocaleString("en")} (
-              {(100 * (v.hospitalizedCumulative / v.positive)).toFixed(2)}%)
+              <StyledCell>
+                {v.death?.toLocaleString("en")}
+                <div>({(100 * (v.death / v.positive)).toFixed(2)}%)</div>
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              {v.inIcuCumulative?.toLocaleString("en")} (
-              {(100 * (v.inIcuCumulative / v.positive)).toFixed(2)}%)
+              <StyledCell>
+                {v.hospitalizedCumulative?.toLocaleString("en")}
+                <div>
+                  ({(100 * (v.hospitalizedCumulative / v.positive)).toFixed(2)}
+                  %)
+                </div>
+              </StyledCell>
+            </DataTableCell>
+            <DataTableCell>
+              <StyledCell>
+                {v.inIcuCumulative?.toLocaleString("en")}
+                <div>
+                  ({(100 * (v.inIcuCumulative / v.positive)).toFixed(2)}%)
+                </div>
+              </StyledCell>
             </DataTableCell>
           </DataTableRow>
         ))}

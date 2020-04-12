@@ -5,9 +5,7 @@ import TopAppBar, {
   TopAppBarTitle,
   TopAppBarFixedAdjust,
 } from "@material/react-top-app-bar";
-
 import Link from "next/link";
-
 import styled from "styled-components";
 
 const MenuItem = styled.a`
@@ -21,6 +19,10 @@ const Navbar = () => (
     <TopAppBar dense>
       <TopAppBarRow>
         <TopAppBarSection>
+          <img
+            style={{ marginLeft: "10px", height: "30px", width: "30px" }}
+            src="/covid-logo2.svg"
+          />
           <TopAppBarTitle>The Covid Curve</TopAppBarTitle>
         </TopAppBarSection>
         {/* <TopAppBarSection align="end">

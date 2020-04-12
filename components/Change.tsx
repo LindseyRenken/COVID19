@@ -5,6 +5,8 @@ import {
   DataTableHeadCell,
   DataTableCell,
 } from "@rmwc/data-table";
+import styled from "styled-components";
+import { StyledCell } from "./Table";
 
 interface Props {
   data: any;
@@ -15,22 +17,45 @@ const Change = ({ data }: Props) => {
     <>
       <DataTableHead>
         <DataTableRow>
-          <DataTableHeadCell style={{ width: "150px" }} alignMiddle={true}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold", width: "150px" }}
+            alignMiddle={true}
+          >
             State
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_1"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_1"}
+          >
             Tests
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_2"}>
-            Negative
-          </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_3"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_3"}
+          >
             Positive
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_4"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_2"}
+          >
+            Negative
+          </DataTableHeadCell>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_4"}
+          >
             Recovered
           </DataTableHeadCell>
-          <DataTableHeadCell alignMiddle={true} key={"header_5"}>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_5"}
+          >
             Deaths
           </DataTableHeadCell>
         </DataTableRow>
@@ -38,22 +63,53 @@ const Change = ({ data }: Props) => {
       <DataTableBody>
         {data.map((v, i) => (
           <DataTableRow key={i}>
-            <DataTableCell style={{ width: "150px" }}>{v.state}</DataTableCell>
-            <DataTableCell>
-              {v.totalTestResultsIncrease?.toLocaleString("en")}
+            <DataTableCell
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "150px",
+              }}
+            >
+              {/* <img
+                style={{
+                  margin: "0px 10px",
+                  height: "20px",
+                }}
+                src={"/" + v.state + ".svg"}
+              /> */}
+              {v.state}
             </DataTableCell>
             <DataTableCell>
-              {v.negativeIncrease?.toLocaleString("en")} (
-              {(100 * (v.negativeIncrease / v.negative)).toFixed(2)}%)
+              <StyledCell>
+                {v.totalTestResultsIncrease?.toLocaleString("en")}
+                <div>
+                  ({(100 * (v.totalTestResultsIncrease / v.total)).toFixed(2)}%)
+                </div>
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              {v.positiveIncrease?.toLocaleString("en")} (
-              {(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
+              <StyledCell>
+                {v.positiveIncrease?.toLocaleString("en")}{" "}
+                <div>
+                  ({(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
+                </div>
+              </StyledCell>
+            </DataTableCell>
+            <DataTableCell>
+              <StyledCell>
+                {v.negativeIncrease?.toLocaleString("en")}
+                <div>
+                  ({(100 * (v.negativeIncrease / v.negative)).toFixed(2)}%)
+                </div>
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>{v.recovered?.toLocaleString("en")}</DataTableCell>
             <DataTableCell>
-              {v.deathIncrease?.toLocaleString("en")} (
-              {(100 * (v.deathIncrease / v.death)).toFixed(2)}%)
+              <StyledCell>
+                {v.deathIncrease?.toLocaleString("en")}{" "}
+                <div>({(100 * (v.deathIncrease / v.death)).toFixed(2)}%)</div>
+              </StyledCell>
             </DataTableCell>
           </DataTableRow>
         ))}

@@ -22,6 +22,17 @@ const Container = styled.div`
   // justify-content: center;
 `;
 
+export const StyledCell = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    margin-left: 10px;
+    color: grey;
+    font-size: 12px;
+  }
+`;
+
 interface Props {
   data: any;
 }
@@ -40,7 +51,13 @@ const Sidebar = ({ data }: Props) => {
   return (
     <Container>
       <Summary>
-        <h3>United States</h3>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            style={{ height: "30px", marginRight: "20px" }}
+            src={"/us.svg"}
+          />
+          <h3>United States</h3>
+        </div>
         <TabBar
           activeTabIndex={activeTab}
           onActivate={(evt) => setActiveTab(evt.detail.index)}
