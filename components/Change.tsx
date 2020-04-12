@@ -86,14 +86,18 @@ const Change = ({ data }: Props) => {
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>{RenderCell(v.positiveIncrease, v.total)}</StyledCell>
+              <StyledCell>
+                {RenderCell(v.positiveIncrease, v.positive)}
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>{RenderCell(v.negativeIncrease, v.total)}</StyledCell>
+              <StyledCell>
+                {RenderCell(v.negativeIncrease, v.negative)}
+              </StyledCell>
             </DataTableCell>
             <DataTableCell>{v.recovered?.toLocaleString("en")}</DataTableCell>
             <DataTableCell>
-              <StyledCell>{RenderCell(v.deathIncrease, v.total)}</StyledCell>
+              <StyledCell>{RenderCell(v.deathIncrease, v.death)}</StyledCell>
             </DataTableCell>
           </DataTableRow>
         ))}
