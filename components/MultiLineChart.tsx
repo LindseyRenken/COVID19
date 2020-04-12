@@ -10,7 +10,7 @@ interface Props {
   states: string[];
 }
 
-class Chart extends Component<Props, {}> {
+class MultiLineChart extends Component<Props, {}> {
   chart: am4charts.XYChart;
 
   componentDidMount() {
@@ -100,4 +100,4 @@ class Chart extends Component<Props, {}> {
   }
 }
 
-export default Chart;
+export default MultiLineChart;
