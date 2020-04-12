@@ -45,6 +45,19 @@ const Summary = styled.div`
   height: 48px;
 `;
 
+export function RenderCell(top, bottom) {
+  if (top) {
+    return (
+      <>
+        {top?.toLocaleString("en")}
+        <div>({(100 * (top / bottom)).toFixed(2)}%)</div>
+      </>
+    );
+  } else {
+    return "-";
+  }
+}
+
 const Sidebar = ({ data }: Props) => {
   const [activeTab, setActiveTab] = React.useState(0);
 

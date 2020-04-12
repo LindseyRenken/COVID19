@@ -5,7 +5,7 @@ import {
   DataTableHeadCell,
   DataTableCell,
 } from "@rmwc/data-table";
-import { StyledCell } from "./Table";
+import { RenderCell, StyledCell } from "./Table";
 import SparkLineChart from "./SparkLineChart";
 
 interface Props {
@@ -28,7 +28,7 @@ const Testing = ({ data }: Props) => {
             alignMiddle={true}
             key={"header_1"}
           >
-            Total
+            Tests
           </DataTableHeadCell>
           <DataTableHeadCell
             style={{ fontWeight: "bold" }}
@@ -81,22 +81,13 @@ const Testing = ({ data }: Props) => {
             </DataTableCell>
             <DataTableCell>{v.total?.toLocaleString("en")}</DataTableCell>
             <DataTableCell>
-              <StyledCell>
-                {v.positive?.toLocaleString("en")}{" "}
-                <div>({(100 * (v.positive / v.total)).toFixed(2)}%)</div>
-              </StyledCell>
+              <StyledCell>{RenderCell(v.positive, v.total)}</StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>
-                {v.negative?.toLocaleString("en")}{" "}
-                <div>({(100 * (v.negative / v.total)).toFixed(2)}%)</div>
-              </StyledCell>
+              <StyledCell>{RenderCell(v.negative, v.total)}</StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>
-                {v.pending?.toLocaleString("en")}{" "}
-                <div>({(100 * (v.pending / v.total)).toFixed(2)}%)</div>
-              </StyledCell>
+              <StyledCell>{RenderCell(v.pending, v.total)}</StyledCell>
             </DataTableCell>
 
             <DataTableCell>

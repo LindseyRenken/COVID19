@@ -5,7 +5,7 @@ import {
   DataTableHeadCell,
   DataTableCell,
 } from "@rmwc/data-table";
-import { StyledCell } from "./Table";
+import { RenderCell, StyledCell } from "./Table";
 
 interface Props {
   data: any;
@@ -50,6 +50,13 @@ const Outcomes = ({ data }: Props) => {
           >
             Admitted to ICU
           </DataTableHeadCell>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_5"}
+          >
+            Ventilated
+          </DataTableHeadCell>
         </DataTableRow>
       </DataTableHead>
       <DataTableBody>
@@ -73,32 +80,24 @@ const Outcomes = ({ data }: Props) => {
               {v.state}
             </DataTableCell>
             <DataTableCell>
+              <StyledCell>{RenderCell(v.recovered, v.positive)}</StyledCell>
+            </DataTableCell>
+            <DataTableCell>
+              <StyledCell>{RenderCell(v.death, v.positive)}</StyledCell>
+            </DataTableCell>
+            <DataTableCell>
               <StyledCell>
-                {v.recovered?.toLocaleString("en")}
-                <div>({(100 * (v.recovered / v.positive)).toFixed(2)}%)</div>
+                {RenderCell(v.hospitalizedCumulative, v.positive)}
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {v.death?.toLocaleString("en")}
-                <div>({(100 * (v.death / v.positive)).toFixed(2)}%)</div>
+                {RenderCell(v.inIcuCumulative, v.positive)}
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {v.hospitalizedCumulative?.toLocaleString("en")}
-                <div>
-                  ({(100 * (v.hospitalizedCumulative / v.positive)).toFixed(2)}
-                  %)
-                </div>
-              </StyledCell>
-            </DataTableCell>
-            <DataTableCell>
-              <StyledCell>
-                {v.inIcuCumulative?.toLocaleString("en")}
-                <div>
-                  ({(100 * (v.inIcuCumulative / v.positive)).toFixed(2)}%)
-                </div>
+                {RenderCell(v.onVentilatorCumulative, v.positive)}
               </StyledCell>
             </DataTableCell>
           </DataTableRow>

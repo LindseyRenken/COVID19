@@ -6,7 +6,7 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 import styled from "styled-components";
-import { StyledCell } from "./Table";
+import { RenderCell, StyledCell } from "./Table";
 
 interface Props {
   data: any;
@@ -82,34 +82,18 @@ const Change = ({ data }: Props) => {
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {v.totalTestResultsIncrease?.toLocaleString("en")}
-                <div>
-                  ({(100 * (v.totalTestResultsIncrease / v.total)).toFixed(2)}%)
-                </div>
+                {RenderCell(v.totalTestResultsIncrease, v.total)}
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>
-                {v.positiveIncrease?.toLocaleString("en")}{" "}
-                <div>
-                  ({(100 * (v.positiveIncrease / v.positive)).toFixed(2)}%)
-                </div>
-              </StyledCell>
+              <StyledCell>{RenderCell(v.positiveIncrease, v.total)}</StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>
-                {v.negativeIncrease?.toLocaleString("en")}
-                <div>
-                  ({(100 * (v.negativeIncrease / v.negative)).toFixed(2)}%)
-                </div>
-              </StyledCell>
+              <StyledCell>{RenderCell(v.negativeIncrease, v.total)}</StyledCell>
             </DataTableCell>
             <DataTableCell>{v.recovered?.toLocaleString("en")}</DataTableCell>
             <DataTableCell>
-              <StyledCell>
-                {v.deathIncrease?.toLocaleString("en")}{" "}
-                <div>({(100 * (v.deathIncrease / v.death)).toFixed(2)}%)</div>
-              </StyledCell>
+              <StyledCell>{RenderCell(v.deathIncrease, v.total)}</StyledCell>
             </DataTableCell>
           </DataTableRow>
         ))}

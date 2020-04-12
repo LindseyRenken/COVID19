@@ -6,7 +6,7 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 
-import { StyledCell } from "./Table";
+import { RenderCell, StyledCell } from "./Table";
 
 interface Props {
   data: any;
@@ -28,7 +28,7 @@ const Active = ({ data }: Props) => {
             alignMiddle={true}
             key={"header_1"}
           >
-            Recovering
+            Infected
           </DataTableHeadCell>
           <DataTableHeadCell
             style={{ fontWeight: "bold" }}
@@ -74,45 +74,23 @@ const Active = ({ data }: Props) => {
               {v.state}
             </DataTableCell>
             <DataTableCell>
-              {(v.positive - v.recovered)?.toLocaleString("en")}
+              {!(v.positive || v.recovered) && "-"}
+              {(v.positive || v.recovered) &&
+                (v.positive - v.recovered)?.toLocaleString("en")}
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {v.hospitalizedCurrently?.toLocaleString("en")}
-                <div>
-                  (
-                  {(
-                    100 *
-                    (v.hospitalizedCurrently / (v.positive - v.recovered))
-                  ).toFixed(2)}
-                  %)
-                </div>
+                {RenderCell(v.hospitalizedCurrently, v.positive - v.recovered)}
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {v.inIcuCurrently?.toLocaleString("en")}
-                <div>
-                  (
-                  {(
-                    100 *
-                    (v.inIcuCurrently / (v.positive - v.recovered))
-                  ).toFixed(2)}
-                  %)
-                </div>
+                {RenderCell(v.inIcuCurrently, v.positive - v.recovered)}
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {v.onVentilatorCurrently?.toLocaleString("en")}
-                <div>
-                  (
-                  {(
-                    100 *
-                    (v.onVentilatorCurrently / (v.positive - v.recovered))
-                  ).toFixed(2)}
-                  %)
-                </div>
+                {RenderCell(v.onVentilatorCurrently, v.positive - v.recovered)}
               </StyledCell>
             </DataTableCell>
           </DataTableRow>
