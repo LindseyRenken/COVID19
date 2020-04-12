@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Chart, Util } from "@antv/g2";
+import { Chart } from "@antv/g2";
 import { InView } from "react-intersection-observer";
 
 interface Props {
@@ -13,7 +13,7 @@ interface State {
   chartSet: boolean;
 }
 
-class SparkLineChart extends Component<Props, State> {
+class SparkPieChart extends Component<Props, State> {
   state: State = {
     chartSet: false,
   };
@@ -76,4 +76,4 @@ class SparkLineChart extends Component<Props, State> {
   }
 }
 
-export default SparkLineChart;
+export default SparkPieChart;

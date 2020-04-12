@@ -6,7 +6,7 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 import { RenderCell, StyledCell } from "./Table";
-import SparkLineChart from "./SparkLineChart";
+import SparkLineChart from "./SparkPieChart";
 
 interface Props {
   data: any;
