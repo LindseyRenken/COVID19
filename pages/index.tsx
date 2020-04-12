@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
-import Chart from "../components/Chart";
+import Chart from "../components/MultiLineChart";
 import Table from "../components/Table";
 import fetch from "isomorphic-unfetch";
 

@@ -6,6 +6,7 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 import { StyledCell } from "./Table";
+import SparkLineChart from "./SparkLineChart";
 
 interface Props {
   data: any;
@@ -50,17 +51,23 @@ const Testing = ({ data }: Props) => {
           >
             Pending
           </DataTableHeadCell>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_5"}
+          ></DataTableHeadCell>
         </DataTableRow>
       </DataTableHead>
       <DataTableBody>
         {data.map((v, i) => (
-          <DataTableRow key={i}>
+          <DataTableRow key={i} style={{ height: "100px" }}>
             <DataTableCell
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 width: "150px",
+                height: "100px",
               }}
             >
               {/* <img
@@ -90,6 +97,15 @@ const Testing = ({ data }: Props) => {
                 {v.pending?.toLocaleString("en")}{" "}
                 <div>({(100 * (v.pending / v.total)).toFixed(2)}%)</div>
               </StyledCell>
+            </DataTableCell>
+
+            <DataTableCell>
+              <SparkLineChart
+                positive={v.positive}
+                negative={v.negative}
+                pending={v.pending}
+                id={i}
+              />
             </DataTableCell>
           </DataTableRow>
         ))}
