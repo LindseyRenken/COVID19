@@ -1,7 +1,8 @@
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+// import * as am4core from "@amcharts/amcharts4/core";
+// import * as am4charts from "@amcharts/amcharts4/charts";
+// import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { Component } from "react";
+import { Chart, Util } from "@antv/g2";
 
 // am4core.useTheme(am4themes_animated);
 
@@ -13,16 +14,14 @@ interface Props {
 }
 
 class SparkLineChart extends Component<Props, {}> {
-  chart: am4charts.PieChart;
-
   componentDidMount() {
-    // Create chart instance
-    var chart = am4core.create("chartdiv_" + this.props.id, am4charts.PieChart);
-
-    console.log(typeof this.props.positive);
-
+    const chart = new Chart({
+      container: "chartdiv_" + this.props.id,
+      autoFit: true,
+      height: 50,
+    });
     // Add data
-    chart.data = [
+    const data = [
       {
         category: "Positive",
         value: this.props.positive,
@@ -36,34 +35,23 @@ class SparkLineChart extends Component<Props, {}> {
         value: this.props.pending,
       },
     ];
+    chart.data(data);
 
-    // Remove padding
-    chart.padding(0, 0, 0, 0);
+    chart.coordinate("theta", {
+      radius: 0.75,
+    });
+    chart.tooltip(false);
 
-    // Add and configure Series
-    var pieSeries = chart.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = "value";
-    pieSeries.dataFields.category = "category";
-    pieSeries.labels.template.disabled = true;
-    pieSeries.ticks.template.disabled = true;
-    pieSeries.slices.template.states.getKey(
-      "active"
-    ).properties.shiftRadius = 0;
+    chart
+      .interval()
+      .adjust("stack")
+      .position("value")
+      .color("category", ["#86BBD8", "#F26419", "#758E4F"])
+      .label(false);
 
-    // Set up slices
-    pieSeries.slices.template.tooltipText = "";
-    pieSeries.slices.template.alwaysShowTooltip = false;
+    chart.legend(false);
 
-    // chart.chartContainer.minHeight = 40;
-    // chart.chartContainer.minWidth = 40;
-
-    this.chart = chart;
-  }
-
-  componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
-    }
+    chart.render();
   }
 
   render() {
