@@ -6,7 +6,7 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 import { RenderCell, StyledCell } from "./Table";
-import SparkLineChart from "./SparkPieChart";
+import SparkLineChart from "./PieChart";
 
 interface Props {
   data: any;
@@ -60,14 +60,14 @@ const Testing = ({ data }: Props) => {
       </DataTableHead>
       <DataTableBody>
         {data.map((v, i) => (
-          <DataTableRow key={i} style={{ height: "100px" }}>
+          <DataTableRow key={i} style={{ height: "75px" }}>
             <DataTableCell
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 width: "150px",
-                height: "100px",
+                height: "75px",
               }}
             >
               {/* <img

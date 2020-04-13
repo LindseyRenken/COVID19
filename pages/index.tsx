@@ -44,13 +44,13 @@ const Page = function Index(props) {
       res[i][v.state] = el;
     });
   });
-  // console.log(res);
+  // console.log(combined);
 
   return (
     <Container>
       <Navbar />
       <Main>
-        <Table data={sidebar_data} />
+        <Table data={sidebar_data} all_data={data} />
         {/* <Chart data={res} states={states} /> */}
       </Main>
     </Container>

@@ -7,12 +7,14 @@ import {
 } from "@rmwc/data-table";
 import styled from "styled-components";
 import { RenderCell, StyledCell } from "./Table";
+import LineChart from "./LineChart";
 
 interface Props {
   data: any;
+  all_data: any;
 }
 
-const Change = ({ data }: Props) => {
+const Change = ({ data, all_data }: Props) => {
   return (
     <>
       <DataTableHead>
@@ -44,13 +46,13 @@ const Change = ({ data }: Props) => {
           >
             Negative
           </DataTableHeadCell>
-          <DataTableHeadCell
+          {/* <DataTableHeadCell
             style={{ fontWeight: "bold" }}
             alignMiddle={true}
             key={"header_4"}
           >
             Recovered
-          </DataTableHeadCell>
+          </DataTableHeadCell> */}
           <DataTableHeadCell
             style={{ fontWeight: "bold" }}
             alignMiddle={true}
@@ -58,17 +60,23 @@ const Change = ({ data }: Props) => {
           >
             Deaths
           </DataTableHeadCell>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_6"}
+          ></DataTableHeadCell>
         </DataTableRow>
       </DataTableHead>
       <DataTableBody>
         {data.map((v, i) => (
-          <DataTableRow key={i}>
+          <DataTableRow key={i} style={{ height: "75px" }}>
             <DataTableCell
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 width: "150px",
+                height: "75px",
               }}
             >
               {/* <img
@@ -95,9 +103,15 @@ const Change = ({ data }: Props) => {
                 {RenderCell(v.negativeIncrease, v.negative)}
               </StyledCell>
             </DataTableCell>
-            <DataTableCell>{v.recovered?.toLocaleString("en")}</DataTableCell>
+            {/* <DataTableCell>{v.recovered?.toLocaleString("en")}</DataTableCell> */}
             <DataTableCell>
               <StyledCell>{RenderCell(v.deathIncrease, v.death)}</StyledCell>
+            </DataTableCell>
+            <DataTableCell>
+              <LineChart
+                data={all_data.filter((x) => x.state === v.state).reverse()}
+                id={i}
+              />
             </DataTableCell>
           </DataTableRow>
         ))}

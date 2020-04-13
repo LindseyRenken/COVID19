@@ -28,7 +28,7 @@ const Active = ({ data }: Props) => {
             alignMiddle={true}
             key={"header_1"}
           >
-            Infected
+            Infected (approx)
           </DataTableHeadCell>
           <DataTableHeadCell
             style={{ fontWeight: "bold" }}

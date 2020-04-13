@@ -25,7 +25,7 @@ class SparkPieChart extends Component<Props, State> {
       const chart = new Chart({
         container: "chartdiv_" + this.props.id,
         autoFit: true,
-        height: 50,
+        height: 30,
       });
       // Add data
       const data = [
@@ -69,7 +69,7 @@ class SparkPieChart extends Component<Props, State> {
       <InView as="div" onChange={(inView, entry) => this.setActive(inView)}>
         <div
           id={"chartdiv_" + this.props.id}
-          style={{ height: "75px", width: "75px" }}
+          style={{ height: "50px", width: "75px" }}
         ></div>
       </InView>
     );

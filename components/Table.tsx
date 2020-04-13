@@ -35,6 +35,7 @@ export const StyledCell = styled.div`
 
 interface Props {
   data: any;
+  all_data: any;
 }
 
 const Summary = styled.div`
@@ -58,7 +59,7 @@ export function RenderCell(top, bottom) {
   }
 }
 
-const Sidebar = ({ data }: Props) => {
+const Sidebar = ({ data, all_data }: Props) => {
   const [activeTab, setActiveTab] = React.useState(0);
 
   return (
@@ -89,7 +90,7 @@ const Sidebar = ({ data }: Props) => {
         stickyColumns={1}
       >
         <DataTableContent>
-          {activeTab == 0 && <Change data={data} />}
+          {activeTab == 0 && <Change data={data} all_data={all_data} />}
           {activeTab == 1 && <Testing data={data} />}
           {activeTab == 2 && <Active data={data} />}
           {activeTab == 3 && <Outcomes data={data} />}
