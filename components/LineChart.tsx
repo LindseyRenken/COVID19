@@ -9,19 +9,24 @@ interface Props {
 
 interface State {
   chartSet: boolean;
+  chart: Chart;
 }
 
 class LineChart extends Component<Props, State> {
   state: State = {
     chartSet: false,
+    chart: null,
   };
 
   setActive(inView: boolean) {
+    console.log(inView);
     if (!inView) return;
     if (this.state.chartSet) return;
     else {
-      console.log(this.props.data);
-      const chart = new Chart({
+      // this.state.chart?.clear();
+      console.log(this.state.chart);
+
+      let chart = new Chart({
         container: "linechartdiv_" + this.props.id,
         autoFit: true,
         height: 50,
@@ -57,9 +62,10 @@ class LineChart extends Component<Props, State> {
       });
       // chart.point().position("date*positive");
 
+      console.log("render");
       chart.render();
 
-      this.setState({ chartSet: true });
+      this.setState({ chartSet: true, chart: chart });
     }
   }
 

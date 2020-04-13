@@ -55,13 +55,14 @@ const Active = ({ data }: Props) => {
       </DataTableHead>
       <DataTableBody>
         {data.map((v, i) => (
-          <DataTableRow key={i}>
+          <DataTableRow key={i} style={{ height: "75px" }}>
             <DataTableCell
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 width: "150px",
+                height: "75px",
               }}
             >
               {/* <img

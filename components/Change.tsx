@@ -11,10 +11,11 @@ import LineChart from "./LineChart";
 
 interface Props {
   data: any;
-  all_data: any;
+  sortDir: any;
+  setSortDir: (sortDir: any) => void;
 }
 
-const Change = ({ data, all_data }: Props) => {
+const Change = ({ data, sortDir, setSortDir }: Props) => {
   return (
     <>
       <DataTableHead>
@@ -22,6 +23,11 @@ const Change = ({ data, all_data }: Props) => {
           <DataTableHeadCell
             style={{ fontWeight: "bold", width: "150px" }}
             alignMiddle={true}
+            sort={sortDir}
+            onSortChange={(sortDir) => {
+              setSortDir(sortDir);
+              console.log(sortDir);
+            }}
           >
             State
           </DataTableHeadCell>
@@ -46,13 +52,6 @@ const Change = ({ data, all_data }: Props) => {
           >
             Negative
           </DataTableHeadCell>
-          {/* <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_4"}
-          >
-            Recovered
-          </DataTableHeadCell> */}
           <DataTableHeadCell
             style={{ fontWeight: "bold" }}
             alignMiddle={true}
@@ -90,7 +89,7 @@ const Change = ({ data, all_data }: Props) => {
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {RenderCell(v.totalTestResultsIncrease, v.total)}
+                {RenderCell(v.totalTestResultsIncrease, v.totalTestResults)}
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
@@ -103,15 +102,11 @@ const Change = ({ data, all_data }: Props) => {
                 {RenderCell(v.negativeIncrease, v.negative)}
               </StyledCell>
             </DataTableCell>
-            {/* <DataTableCell>{v.recovered?.toLocaleString("en")}</DataTableCell> */}
             <DataTableCell>
               <StyledCell>{RenderCell(v.deathIncrease, v.death)}</StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <LineChart
-                data={all_data.filter((x) => x.state === v.state).reverse()}
-                id={i}
-              />
+              <LineChart data={v.allPoints.reverse()} id={i} />
             </DataTableCell>
           </DataTableRow>
         ))}
