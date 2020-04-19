@@ -6,7 +6,7 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 import styled from "styled-components";
-import { RenderCell, StyledCell } from "./Table";
+import { RenderCell, StyledCell, RenderArrows } from "./Table";
 import LineChart from "./LineChart";
 import SingleLineChart from "./SingleLineChart";
 
@@ -14,9 +14,11 @@ interface Props {
   data: any;
   sortDir: any;
   setSortDir: (sortDir: any) => void;
+  data_prev: any;
 }
 
-const Change = ({ data, sortDir, setSortDir }: Props) => {
+const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
+  console.log(data_prev);
   return (
     <>
       <DataTableHead>
@@ -90,7 +92,11 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {RenderCell(v.totalTestResultsIncrease, v.totalTestResults)}
+                {RenderArrows(
+                  v.totalTestResultsIncrease,
+                  data_prev.filter((x) => x.state == v.state),
+                  "totalTestResultsIncrease"
+                )}
                 <SingleLineChart
                   data={v.allPoints}
                   id={i}
@@ -101,7 +107,11 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {RenderCell(v.positiveIncrease, v.positive)}
+                {RenderArrows(
+                  v.positiveIncrease,
+                  data_prev.filter((x) => x.state == v.state),
+                  "positiveIncrease"
+                )}
                 <SingleLineChart
                   data={v.allPoints}
                   id={i}
@@ -112,7 +122,11 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {RenderCell(v.negativeIncrease, v.negative)}
+                {RenderArrows(
+                  v.negativeIncrease,
+                  data_prev.filter((x) => x.state == v.state),
+                  "negativeIncrease"
+                )}
                 <SingleLineChart
                   data={v.allPoints}
                   id={i}
@@ -123,7 +137,11 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
-                {RenderCell(v.deathIncrease, v.death)}
+                {RenderArrows(
+                  v.deathIncrease,
+                  data_prev.filter((x) => x.state == v.state),
+                  "deathIncrease"
+                )}
                 <SingleLineChart
                   data={v.allPoints}
                   id={i}

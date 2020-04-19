@@ -7,18 +7,18 @@ import { ThemeProvider as MaterialThemeProvider } from "@rmwc/theme";
 
 const theme = {
   colors: {
-    primary: "white"
-  }
+    primary: "white",
+  },
 };
 
 const breakpoints = {
   isDesktop: "(min-width: 1024px)",
   isTablet: "(max-width: 1023px) and (min-width: 768px)",
-  isMobile: "(max-width: 767px)"
+  isMobile: "(max-width: 767px)",
 };
 
 const materialTheme: Record<string, string> = {
-  topAppBarFillColor: "FFFFFF"
+  topAppBarFillColor: "FFFFFF",
 };
 
 export default class CovidCurveApp extends App {
@@ -27,6 +27,14 @@ export default class CovidCurveApp extends App {
     return (
       <MaterialThemeProvider options={materialTheme}>
         <ThemeProvider theme={theme}>
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+            rel="stylesheet"
+          />
           <Breakpoints {...breakpoints}>
             <Component {...pageProps} />
           </Breakpoints>

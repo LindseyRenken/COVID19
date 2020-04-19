@@ -26,7 +26,11 @@ const Page = function Index(props) {
     t.allPoints = data.filter((d) => d.state == t.state).reverse();
   });
 
+  let table_data_prev = data.slice(56, 111);
+
   const latestDate = table_data[0].dateChecked;
+
+  console.log(table_data_prev);
 
   // const states = data.slice(0, 56).map((v) => v.state);
   // let combined = [];
@@ -55,7 +59,7 @@ const Page = function Index(props) {
     <Container>
       <Navbar date={latestDate} />
       <Main>
-        <Table data={table_data} />
+        <Table data={table_data} data_prev={table_data_prev} />
         {/* <Chart data={res} states={states} /> */}
       </Main>
     </Container>

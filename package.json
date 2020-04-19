@@ -22,6 +22,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.13",
     "@antv/g2": "^4.0.6",
+    "@material/react-material-icon": "^0.15.0",
     "@material/react-top-app-bar": "^0.15.0",
     "@rmwc/checkbox": "^6.0.14",
     "@rmwc/data-table": "^6.0.9",

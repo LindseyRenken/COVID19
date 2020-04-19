@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { DataTable, DataTableContent } from "@rmwc/data-table";
+import MaterialIcon from "@material/react-material-icon";
 
 import Link from "next/link";
 import Testing from "./Testing";
@@ -37,6 +38,7 @@ export const StyledCell = styled.div`
 
 interface Props {
   data: any;
+  data_prev: any;
 }
 
 const Summary = styled.div`
@@ -60,7 +62,41 @@ export function RenderCell(top, bottom) {
   }
 }
 
-const Table = ({ data }: Props) => {
+const StyledVal = styled.div`
+  display: felx;
+  align-items: center;
+`;
+
+export function RenderArrows(curr, prev, field) {
+  const val = curr.toLocaleString("en");
+  if (prev.length > 0) {
+    if (curr > prev[0][field]) {
+      return (
+        <StyledVal>
+          <div>{val}</div>
+          <MaterialIcon
+            style={{ marginLeft: "2px", fontSize: "16px", color: "red" }}
+            aria-label="arrow_upward"
+            icon="arrow_upward"
+          />
+        </StyledVal>
+      );
+    } else if (curr < prev[0][field]) {
+      return (
+        <StyledVal>
+          <div>{val}</div>
+          <MaterialIcon
+            style={{ marginLeft: "2px", fontSize: "16px", color: "green" }}
+            aria-label="arrow_downward"
+            icon="arrow_downward"
+          />
+        </StyledVal>
+      );
+    }
+  }
+}
+
+const Table = ({ data, data_prev }: Props) => {
   const router = useRouter();
   let { tab } = router.query;
 
@@ -81,7 +117,12 @@ const Table = ({ data }: Props) => {
   switch (tab) {
     case "change":
       currentTab = (
-        <Change data={sortedData} sortDir={sortDir} setSortDir={setSortDir} />
+        <Change
+          data={sortedData}
+          data_prev={data_prev}
+          sortDir={sortDir}
+          setSortDir={setSortDir}
+        />
       );
       activeTab = 0;
       break;
@@ -102,7 +143,12 @@ const Table = ({ data }: Props) => {
       break;
     default:
       currentTab = (
-        <Change data={sortedData} sortDir={sortDir} setSortDir={setSortDir} />
+        <Change
+          data={sortedData}
+          sortDir={sortDir}
+          setSortDir={setSortDir}
+          data_prev={data_prev}
+        />
       );
       activeTab = 0;
       break;
