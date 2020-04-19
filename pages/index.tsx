@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Chart from "../components/MultiLineChart";
 import Table from "../components/Table";
 import fetch from "isomorphic-unfetch";
+// import smooth from "array-smooth";
 
 const Container = styled.div`
   margin: 0;
@@ -22,10 +23,10 @@ const Page = function Index(props) {
     .slice(0, 56)
     .sort((a, b) => (a.positive > b.positive ? -1 : 1));
   table_data.forEach((t) => {
-    t.allPoints = data.filter((d) => d.state == t.state);
+    t.allPoints = data.filter((d) => d.state == t.state).reverse();
   });
 
-  // console.log(table_data);
+  const latestDate = table_data[0].dateChecked;
 
   // const states = data.slice(0, 56).map((v) => v.state);
   // let combined = [];
@@ -52,7 +53,7 @@ const Page = function Index(props) {
 
   return (
     <Container>
-      <Navbar />
+      <Navbar date={latestDate} />
       <Main>
         <Table data={table_data} />
         {/* <Chart data={res} states={states} /> */}

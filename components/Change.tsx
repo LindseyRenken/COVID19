@@ -8,6 +8,7 @@ import {
 import styled from "styled-components";
 import { RenderCell, StyledCell } from "./Table";
 import LineChart from "./LineChart";
+import SingleLineChart from "./SingleLineChart";
 
 interface Props {
   data: any;
@@ -21,13 +22,13 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
       <DataTableHead>
         <DataTableRow>
           <DataTableHeadCell
-            style={{ fontWeight: "bold", width: "150px" }}
+            style={{ fontWeight: "bold", width: "100px" }}
             alignMiddle={true}
-            sort={sortDir}
-            onSortChange={(sortDir) => {
-              setSortDir(sortDir);
-              console.log(sortDir);
-            }}
+            // sort={sortDir}
+            // onSortChange={(sortDir) => {
+            //   setSortDir(sortDir);
+            //   console.log(sortDir);
+            // }}
           >
             State
           </DataTableHeadCell>
@@ -59,11 +60,11 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
           >
             Deaths
           </DataTableHeadCell>
-          <DataTableHeadCell
+          {/* <DataTableHeadCell
             style={{ fontWeight: "bold" }}
             alignMiddle={true}
             key={"header_6"}
-          ></DataTableHeadCell>
+          ></DataTableHeadCell> */}
         </DataTableRow>
       </DataTableHead>
       <DataTableBody>
@@ -74,7 +75,7 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "150px",
+                width: "100px",
                 height: "75px",
               }}
             >
@@ -90,24 +91,50 @@ const Change = ({ data, sortDir, setSortDir }: Props) => {
             <DataTableCell>
               <StyledCell>
                 {RenderCell(v.totalTestResultsIncrease, v.totalTestResults)}
+                <SingleLineChart
+                  data={v.allPoints}
+                  id={i}
+                  yaxis={"totalTestResultsIncrease"}
+                  lineColor={"#000000"}
+                />
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
                 {RenderCell(v.positiveIncrease, v.positive)}
+                <SingleLineChart
+                  data={v.allPoints}
+                  id={i}
+                  yaxis={"positiveIncrease"}
+                  lineColor={"#86BBD8"}
+                />
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>
                 {RenderCell(v.negativeIncrease, v.negative)}
+                <SingleLineChart
+                  data={v.allPoints}
+                  id={i}
+                  yaxis={"negativeIncrease"}
+                  lineColor={"#F26419"}
+                />
               </StyledCell>
             </DataTableCell>
             <DataTableCell>
-              <StyledCell>{RenderCell(v.deathIncrease, v.death)}</StyledCell>
+              <StyledCell>
+                {RenderCell(v.deathIncrease, v.death)}
+                <SingleLineChart
+                  data={v.allPoints}
+                  id={i}
+                  yaxis={"deathIncrease"}
+                  lineColor={"#f6ae2d"}
+                />
+              </StyledCell>
             </DataTableCell>
-            <DataTableCell>
+            {/* <DataTableCell>
               <LineChart data={v.allPoints.reverse()} id={i} />
-            </DataTableCell>
+            </DataTableCell> */}
           </DataTableRow>
         ))}
       </DataTableBody>
