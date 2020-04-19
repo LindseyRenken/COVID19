@@ -18,7 +18,7 @@ interface Props {
 }
 
 const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
-  console.log(data_prev);
+  // console.log(data_prev);
   return (
     <>
       <DataTableHead>
