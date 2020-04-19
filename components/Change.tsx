@@ -108,7 +108,7 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
                   data={v.allPoints}
                   id={i}
                   yaxis={"totalTestResultsIncrease"}
-                  lineColor={"#000000"}
+                  lineColor={"#33658a"}
                 />
               </StyledCell>
             </DataTableCell>
@@ -168,7 +168,7 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
                   data={v.allPoints}
                   id={i}
                   yaxis={"hospitalizedIncrease"}
-                  lineColor={"#33658a"}
+                  lineColor={"#000000"}
                 />
               </StyledCell>
             </DataTableCell>
