@@ -43,8 +43,10 @@ interface Props {
 
 const Summary = styled.div`
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
+
+  flex-wrap: wrap;
   margin: 10px 10px;
   height: 48px;
 `;
@@ -164,24 +166,28 @@ const Table = ({ data, data_prev }: Props) => {
           />
           <h3>United States</h3>
         </div>
-        <TabBar activeTabIndex={activeTab} style={{ width: "550px" }}>
-          <Link passHref href="/?tab=change" as={`/?tab=change`}>
-            <Tab>24h Change</Tab>
-          </Link>
-          <Link passHref href="/?tab=testing" as={`/?tab=testing`}>
-            <Tab>Testing</Tab>
-          </Link>
-          <Link passHref href="/?tab=active" as={`/?tab=active`}>
-            <Tab>Active</Tab>
-          </Link>
-          <Link passHref href="/?tab=outcomes" as={`/?tab=outcomes`}>
-            <Tab>Outcomes</Tab>
-          </Link>
-        </TabBar>
       </Summary>
 
+      <TabBar
+        activeTabIndex={activeTab}
+        style={{ float: "right", width: "550px" }}
+      >
+        <Link passHref href="/?tab=change" as={`/?tab=change`}>
+          <Tab>24h Change</Tab>
+        </Link>
+        <Link passHref href="/?tab=testing" as={`/?tab=testing`}>
+          <Tab>Testing</Tab>
+        </Link>
+        <Link passHref href="/?tab=active" as={`/?tab=active`}>
+          <Tab>Active</Tab>
+        </Link>
+        <Link passHref href="/?tab=outcomes" as={`/?tab=outcomes`}>
+          <Tab>Outcomes</Tab>
+        </Link>
+      </TabBar>
+
       <DataTable
-        style={{ height: "calc(100vh - 138px)", width: "100%" }}
+        style={{ height: "calc(100vh - 184px)", width: "100%" }}
         stickyRows={1}
         stickyColumns={1}
       >
