@@ -30,7 +30,7 @@ const Page = function Index(props) {
 
   const latestDate = table_data[0].dateChecked;
 
-  console.log(table_data_prev);
+  // console.log(table_data_prev);
 
   // const states = data.slice(0, 56).map((v) => v.state);
   // let combined = [];

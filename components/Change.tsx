@@ -58,9 +58,16 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
           <DataTableHeadCell
             style={{ fontWeight: "bold" }}
             alignMiddle={true}
-            key={"header_5"}
+            key={"header_6"}
           >
             Deaths
+          </DataTableHeadCell>
+          <DataTableHeadCell
+            style={{ fontWeight: "bold" }}
+            alignMiddle={true}
+            key={"header_5"}
+          >
+            Hospitalizations
           </DataTableHeadCell>
           {/* <DataTableHeadCell
             style={{ fontWeight: "bold" }}
@@ -116,7 +123,7 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
                   data={v.allPoints}
                   id={i}
                   yaxis={"positiveIncrease"}
-                  lineColor={"#86BBD8"}
+                  lineColor={"#f6ae2d"}
                 />
               </StyledCell>
             </DataTableCell>
@@ -131,7 +138,7 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
                   data={v.allPoints}
                   id={i}
                   yaxis={"negativeIncrease"}
-                  lineColor={"#F26419"}
+                  lineColor={"#86BBD8"}
                 />
               </StyledCell>
             </DataTableCell>
@@ -146,7 +153,22 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
                   data={v.allPoints}
                   id={i}
                   yaxis={"deathIncrease"}
-                  lineColor={"#f6ae2d"}
+                  lineColor={"#F26419"}
+                />
+              </StyledCell>
+            </DataTableCell>
+            <DataTableCell>
+              <StyledCell>
+                {RenderArrows(
+                  v.hospitalizedIncrease,
+                  data_prev.filter((x) => x.state == v.state),
+                  "hospitalizedIncrease"
+                )}
+                <SingleLineChart
+                  data={v.allPoints}
+                  id={i}
+                  yaxis={"hospitalizedIncrease"}
+                  lineColor={"#33658a"}
                 />
               </StyledCell>
             </DataTableCell>

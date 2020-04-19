@@ -53,7 +53,7 @@ class SparkPieChart extends Component<Props, State> {
         .interval()
         .adjust("stack")
         .position("value")
-        .color("category", ["#86BBD8", "#F26419", "#758E4F"])
+        .color("category", ["#f6ae2d", "#86BBD8", "#758E4F"])
         .label(false);
 
       chart.legend(false);
