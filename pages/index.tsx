@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Chart from "../components/MultiLineChart";
 import Table from "../components/Table";
 import fetch from "isomorphic-unfetch";
+import MapChart from "../components/MapChart";
 // import smooth from "array-smooth";
 
 const Container = styled.div`
@@ -16,8 +17,17 @@ const Main = styled.div`
   // justify-content: center;
 `;
 
+const Summary = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+
+  // flex-wrap: wrap;
+  margin: 0px 10px;
+  height: 300px;
+`;
+
 const Page = function Index(props) {
-  // console.log(props.data);
   const data = props.data;
   let table_data = data
     .slice(0, 56)
@@ -59,6 +69,28 @@ const Page = function Index(props) {
     <Container>
       <Navbar date={latestDate} />
       <Main>
+        <Summary>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "10px",
+              }}
+            >
+              <h3>United States</h3>
+              <img
+                style={{
+                  height: "20px",
+                  marginLeft: "20px",
+                }}
+                src={"/us.svg"}
+              />
+            </div>
+          </div>
+
+          <MapChart data={table_data} />
+        </Summary>
         <Table data={table_data} data_prev={table_data_prev} />
         {/* <Chart data={res} states={states} /> */}
       </Main>
