@@ -7,14 +7,19 @@ import TopAppBar, {
 } from "@material/react-top-app-bar";
 import Link from "next/link";
 import styled from "styled-components";
+import { DateTime } from "luxon";
 
-const MenuItem = styled.a`
+const MenuItem = styled.div`
   text-decoration: none;
   cursor: pointer;
   margin-right: 20px;
 `;
 
-const Navbar = () => (
+interface Props {
+  date: string;
+}
+
+const Navbar = ({ date }: Props) => (
   <>
     <TopAppBar dense>
       <TopAppBarRow>
@@ -25,13 +30,21 @@ const Navbar = () => (
           />
           <TopAppBarTitle>The Covid Curve</TopAppBarTitle>
         </TopAppBarSection>
-        {/* <TopAppBarSection align="end">
-          <TopAppBarIcon>
+        <TopAppBarSection align="end">
+          <TopAppBarTitle>
+            <MenuItem>
+              Last Updated:{" "}
+              {DateTime.fromISO(date, { setZone: true }).toLocaleString(
+                DateTime.DATETIME_FULL
+              )}
+            </MenuItem>
+          </TopAppBarTitle>
+          {/* <TopAppBarIcon>
             <Link href="/testing">
               <MenuItem>Testing</MenuItem>
             </Link>
-          </TopAppBarIcon>
-        </TopAppBarSection> */}
+          </TopAppBarIcon> */}
+        </TopAppBarSection>
       </TopAppBarRow>
     </TopAppBar>
     <TopAppBarFixedAdjust dense />
