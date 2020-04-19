@@ -14,15 +14,10 @@ import Change from "./Change";
 import { useRouter } from "next/dist/client/router";
 
 const Container = styled.div`
-  // height: calc(100vh - 69px);
-  // width: calc(35vw - 20px);
-
   width: calc(100vw - 20px);
   overflow: auto;
   margin: 10px;
   text-align: center;
-  // align-items: center;
-  // justify-content: center;
 `;
 
 export const StyledCell = styled.div`
@@ -40,16 +35,6 @@ interface Props {
   data: any;
   data_prev: any;
 }
-
-const Summary = styled.div`
-  display: flex;
-  // justify-content: space-between;
-  align-items: center;
-
-  flex-wrap: wrap;
-  margin: 10px 10px;
-  height: 48px;
-`;
 
 export function RenderCell(top, bottom) {
   if (top) {
@@ -158,36 +143,26 @@ const Table = ({ data, data_prev }: Props) => {
 
   return (
     <Container>
-      <Summary>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            style={{ height: "30px", marginRight: "20px" }}
-            src={"/us.svg"}
-          />
-          <h3>United States</h3>
-        </div>
-      </Summary>
-
       <TabBar
         activeTabIndex={activeTab}
-        style={{ float: "right", width: "550px" }}
+        style={{ float: "right", maxWidth: "480px" }}
       >
         <Link passHref href="/?tab=change" as={`/?tab=change`}>
-          <Tab>24h Change</Tab>
+          <Tab style={{ fontSize: "12px", maxWidth: "120px" }}>24h Change</Tab>
         </Link>
         <Link passHref href="/?tab=testing" as={`/?tab=testing`}>
-          <Tab>Testing</Tab>
+          <Tab style={{ fontSize: "12px", maxWidth: "120px" }}>Testing</Tab>
         </Link>
         <Link passHref href="/?tab=active" as={`/?tab=active`}>
-          <Tab>Active</Tab>
+          <Tab style={{ fontSize: "12px", maxWidth: "120px" }}>Active</Tab>
         </Link>
         <Link passHref href="/?tab=outcomes" as={`/?tab=outcomes`}>
-          <Tab>Outcomes</Tab>
+          <Tab style={{ fontSize: "12px", maxWidth: "120px" }}>Outcomes</Tab>
         </Link>
       </TabBar>
 
       <DataTable
-        style={{ height: "calc(100vh - 184px)", width: "100%" }}
+        style={{ height: "calc(100vh - 418px)", width: "100%" }}
         stickyRows={1}
         stickyColumns={1}
       >
