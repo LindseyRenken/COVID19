@@ -34,9 +34,7 @@ const Navbar = ({ date }: Props) => (
           <TopAppBarTitle>
             <MenuItem>
               Last Updated:{" "}
-              {DateTime.fromISO(date, { setZone: true }).toLocaleString(
-                DateTime.DATETIME_FULL
-              )}
+              {DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_FULL)}
             </MenuItem>
           </TopAppBarTitle>
           {/* <TopAppBarIcon>
