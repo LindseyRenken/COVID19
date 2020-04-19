@@ -18,7 +18,7 @@ const Testing = ({ data }: Props) => {
       <DataTableHead>
         <DataTableRow>
           <DataTableHeadCell
-            style={{ fontWeight: "bold", width: "150px" }}
+            style={{ fontWeight: "bold", width: "100px" }}
             alignMiddle={true}
           >
             State
@@ -66,7 +66,7 @@ const Testing = ({ data }: Props) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "150px",
+                width: "100px",
                 height: "75px",
               }}
             >
