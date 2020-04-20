@@ -61,15 +61,14 @@ class MapChart extends Component<Props> {
 
         console.log(geoView);
 
+        // 33658a-86bbd8-758e4f-f6ae2d-f26419
+
         const userView = chart.createView();
         userView.data(userData);
         userView
           .heatmap()
           .position("longitude*latitude")
-          .color(
-            "value",
-            "#F51D27-#FA541C-#FF8C12-#FFC838-#FAFFA8-#80FF73-#12CCCC-#1890FF-#6E32C2"
-          )
+          .color("value", "#33658a-#86bbd8-#758e4f-#f6ae2d-#f26419")
           .size(500 / 20)
           .style({
             blur: 500 / 15,

@@ -79,13 +79,13 @@ const Page = function Index(props) {
               }}
             >
               <h3>United States</h3>
-              <img
+              {/* <img
                 style={{
                   height: "20px",
                   marginLeft: "20px",
                 }}
                 src={"/us.svg"}
-              />
+              /> */}
             </div>
           </div>
 
