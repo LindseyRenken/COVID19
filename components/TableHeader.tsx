@@ -16,8 +16,9 @@ const TableHeader = ({ titles }: Props) => {
           style={{
             fontWeight: "bold",
             width: "100px",
-            height: "45px",
+            height: "35px",
             backgroundColor: "#CCCCCC",
+            fontSize: "12px",
           }}
           alignMiddle={true}
           // sort={sortDir}
@@ -32,8 +33,9 @@ const TableHeader = ({ titles }: Props) => {
           <DataTableHeadCell
             style={{
               fontWeight: "bold",
-              height: "45px",
+              height: "35px",
               backgroundColor: "#CCCCCC",
+              fontSize: "12px",
             }}
             alignMiddle={true}
             key={"header_" + i}
