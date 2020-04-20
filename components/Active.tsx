@@ -31,9 +31,11 @@ const Active = ({ data }: Props) => {
           <DataTableRow key={i} style={{ height: "50px" }}>
             {RenderStateCell(v.state)}
             <DataTableCell>
-              {!(v.positive || v.recovered) && "-"}
-              {(v.positive || v.recovered) &&
-                (v.positive - v.recovered)?.toLocaleString("en")}
+              <div style={{ fontSize: "16px" }}>
+                {!(v.positive || v.recovered) && "-"}
+                {(v.positive || v.recovered) &&
+                  (v.positive - v.recovered)?.toLocaleString("en")}
+              </div>
             </DataTableCell>
             <DataTableCell>
               <StyledCell>

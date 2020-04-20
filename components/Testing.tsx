@@ -25,7 +25,11 @@ const Testing = ({ data }: Props) => {
         {data.map((v, i) => (
           <DataTableRow key={i} style={{ height: "50px" }}>
             {RenderStateCell(v.state)}
-            <DataTableCell>{v.total?.toLocaleString("en")}</DataTableCell>
+            <DataTableCell>
+              <div style={{ fontSize: "16px" }}>
+                {v.total?.toLocaleString("en")}
+              </div>
+            </DataTableCell>
             <DataTableCell>
               <StyledCell>{RenderCell(v.positive, v.total)}</StyledCell>
             </DataTableCell>
