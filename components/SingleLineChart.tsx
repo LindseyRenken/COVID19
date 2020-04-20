@@ -30,7 +30,7 @@ class SingleLineChart extends Component<Props, State> {
       let chart = new Chart({
         container: this.props.yaxis + "_linechartdiv_" + this.props.id,
         autoFit: true,
-        height: 40,
+        height: 30,
       });
 
       const arrSmoothed = smooth(
@@ -65,7 +65,7 @@ class SingleLineChart extends Component<Props, State> {
       <InView as="div" onChange={(inView, entry) => this.setActive(inView)}>
         <div
           id={this.props.yaxis + "_linechartdiv_" + this.props.id}
-          style={{ height: "40px", width: "100px" }}
+          style={{ height: "30px", width: "100px" }}
         ></div>
       </InView>
     );

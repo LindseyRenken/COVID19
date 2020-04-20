@@ -6,9 +6,10 @@ import {
   DataTableCell,
 } from "@rmwc/data-table";
 import styled from "styled-components";
-import { RenderCell, StyledCell, RenderArrows } from "./Table";
+import { RenderCell, StyledCell, RenderArrows, RenderStateCell } from "./Table";
 import LineChart from "./LineChart";
 import SingleLineChart from "./SingleLineChart";
+import TableHeader from "./TableHeader";
 
 interface Props {
   data: any;
@@ -21,82 +22,21 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
   // console.log(data_prev);
   return (
     <>
-      <DataTableHead>
-        <DataTableRow>
-          <DataTableHeadCell
-            style={{ fontWeight: "bold", width: "100px" }}
-            alignMiddle={true}
-            // sort={sortDir}
-            // onSortChange={(sortDir) => {
-            //   setSortDir(sortDir);
-            //   console.log(sortDir);
-            // }}
-          >
-            State
-          </DataTableHeadCell>
-          <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_1"}
-          >
-            Tests
-          </DataTableHeadCell>
-          <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_3"}
-          >
-            Positive
-          </DataTableHeadCell>
-          <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_2"}
-          >
-            Negative
-          </DataTableHeadCell>
-          <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_6"}
-          >
-            Deaths
-          </DataTableHeadCell>
-          <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_5"}
-          >
-            Hospitalizations
-          </DataTableHeadCell>
-          {/* <DataTableHeadCell
-            style={{ fontWeight: "bold" }}
-            alignMiddle={true}
-            key={"header_6"}
-          ></DataTableHeadCell> */}
-        </DataTableRow>
-      </DataTableHead>
+      {
+        <TableHeader
+          titles={[
+            "Tests",
+            "Positive",
+            "Negative",
+            "Deaths",
+            "Hospitalizations",
+          ]}
+        />
+      }
       <DataTableBody>
         {data.map((v, i) => (
-          <DataTableRow key={i} style={{ height: "75px" }}>
-            <DataTableCell
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100px",
-                height: "75px",
-              }}
-            >
-              {/* <img
-                style={{
-                  margin: "0px 10px",
-                  height: "20px",
-                }}
-                src={"/" + v.state + ".svg"}
-              /> */}
-              {v.state}
-            </DataTableCell>
+          <DataTableRow key={i} style={{ height: "50px" }}>
+            {RenderStateCell(v.state)}
             <DataTableCell>
               <StyledCell>
                 {RenderArrows(
@@ -172,9 +112,6 @@ const Change = ({ data, data_prev, sortDir, setSortDir }: Props) => {
                 />
               </StyledCell>
             </DataTableCell>
-            {/* <DataTableCell>
-              <LineChart data={v.allPoints.reverse()} id={i} />
-            </DataTableCell> */}
           </DataTableRow>
         ))}
       </DataTableBody>

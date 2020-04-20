@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DataTable, DataTableContent } from "@rmwc/data-table";
+import { DataTable, DataTableContent, DataTableCell } from "@rmwc/data-table";
 import MaterialIcon from "@material/react-material-icon";
 
 import Link from "next/link";
@@ -36,6 +36,29 @@ interface Props {
   data_prev: any;
 }
 
+export function RenderStateCell(state) {
+  return (
+    <DataTableCell
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100px",
+        height: "75px",
+      }}
+    >
+      {/* <img
+      style={{
+        margin: "0px 10px",
+        height: "20px",
+      }}
+      src={"/" + v.state + ".svg"}
+    /> */}
+      <div style={{ fontSize: "16px" }}>{state}</div>
+    </DataTableCell>
+  );
+}
+
 export function RenderCell(top, bottom) {
   if (top) {
     return (
@@ -52,6 +75,11 @@ export function RenderCell(top, bottom) {
 const StyledVal = styled.div`
   display: felx;
   align-items: center;
+  // width: 20px;
+  div {
+    color: #000000;
+    font-size: 16px;
+  }
 `;
 
 export function RenderArrows(curr, prev, field) {
@@ -80,6 +108,12 @@ export function RenderArrows(curr, prev, field) {
         </StyledVal>
       );
     }
+  } else {
+    return (
+      <StyledVal>
+        <div>{val}</div>
+      </StyledVal>
+    );
   }
 }
 
