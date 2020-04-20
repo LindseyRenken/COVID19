@@ -28,7 +28,7 @@ const Outcomes = ({ data }: Props) => {
       }
       <DataTableBody>
         {data.map((v, i) => (
-          <DataTableRow key={i} style={{ height: "75px" }}>
+          <DataTableRow key={i} style={{ height: "50px" }}>
             {RenderStateCell(v.state)}
             <DataTableCell>
               <StyledCell>{RenderCell(v.recovered, v.positive)}</StyledCell>

@@ -24,7 +24,11 @@ export const StyledCell = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  div {
+  height: 50px;
+  .big {
+    font-size: 16px;
+  }
+  .little {
     margin-left: 10px;
     color: grey;
     font-size: 12px;
@@ -44,7 +48,7 @@ export function RenderStateCell(state) {
         justifyContent: "center",
         alignItems: "center",
         width: "100px",
-        height: "75px",
+        height: "50px",
       }}
     >
       {/* <img
@@ -63,8 +67,8 @@ export function RenderCell(top, bottom) {
   if (top) {
     return (
       <>
-        {top?.toLocaleString("en")}
-        <div>({(100 * (top / bottom)).toFixed(2)}%)</div>
+        <div className={"big"}>{top?.toLocaleString("en")}</div>
+        <div className={"little"}>({(100 * (top / bottom)).toFixed(2)}%)</div>
       </>
     );
   } else {
