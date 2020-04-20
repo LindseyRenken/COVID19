@@ -54,7 +54,7 @@ class MapChart extends Component<Props> {
         geoView
           .polygon()
           .position("longitude*latitude")
-          .color("grey")
+          .color("#999999")
           .label("name", {
             offset: 0,
           });

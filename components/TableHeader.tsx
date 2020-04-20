@@ -13,7 +13,12 @@ const TableHeader = ({ titles }: Props) => {
     <DataTableHead>
       <DataTableRow>
         <DataTableHeadCell
-          style={{ fontWeight: "bold", width: "100px", height: "45px" }}
+          style={{
+            fontWeight: "bold",
+            width: "100px",
+            height: "45px",
+            backgroundColor: "#CCCCCC",
+          }}
           alignMiddle={true}
           // sort={sortDir}
           // onSortChange={(sortDir) => {
@@ -25,7 +30,11 @@ const TableHeader = ({ titles }: Props) => {
         </DataTableHeadCell>
         {titles.map((v, i) => (
           <DataTableHeadCell
-            style={{ fontWeight: "bold", height: "45px" }}
+            style={{
+              fontWeight: "bold",
+              height: "45px",
+              backgroundColor: "#CCCCCC",
+            }}
             alignMiddle={true}
             key={"header_" + i}
           >
