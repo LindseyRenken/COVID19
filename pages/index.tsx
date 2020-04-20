@@ -19,12 +19,41 @@ const Main = styled.div`
 
 const Summary = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   // align-items: center;
 
   // flex-wrap: wrap;
   margin: 0px 10px;
   height: 300px;
+`;
+
+interface StatsProps {
+  color: string;
+}
+
+const Stats = styled.h3<StatsProps>`
+  margin: 15px;
+  border: 0.5px solid ${(p: StatsProps) => p.color};
+  padding: 10px 20px;
+  border-radius: 5px;
+  // display: felx;
+  // justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  height: 75px;
+  font-size: 16px;
+  background-color: ${(p: StatsProps) => p.color};
+  // opacity: 0.2;
+  .stat {
+    font-size: 26px;
+    color: white;
+  }
+`;
+
+const StatsContainer = styled.div`
+  display: felx;
+  max-width: 700px;
+  flex-wrap: wrap;
 `;
 
 const Page = function Index(props) {
@@ -39,6 +68,17 @@ const Page = function Index(props) {
   let table_data_prev = data.slice(56, 111);
 
   const latestDate = table_data[0].dateChecked;
+
+  let usPositive = 0;
+  let usNegative = 0;
+  let usTotalTests = 0;
+  let usDeaths = 0;
+  table_data.forEach((v) => {
+    if (v.positive) usPositive += v.positive;
+    if (v.negative) usNegative += v.negative;
+    if (v.totalTestResults) usTotalTests += v.totalTestResults;
+    if (v.death) usDeaths += v.death;
+  });
 
   // console.log(table_data_prev);
 
@@ -76,6 +116,7 @@ const Page = function Index(props) {
                 display: "flex",
                 alignItems: "center",
                 marginLeft: "10px",
+                height: "70px",
               }}
             >
               <h1>United States</h1>
@@ -87,6 +128,26 @@ const Page = function Index(props) {
                 src={"/us.svg"}
               /> */}
             </div>
+            <StatsContainer>
+              <Stats color={"#33658a"}>
+                <div>Total Tests:</div>
+                <div className={"stat"}>
+                  {usTotalTests.toLocaleString("en")}
+                </div>
+              </Stats>
+              <Stats color={"#f6ae2d"}>
+                <div>Positive Tests:</div>
+                <div className={"stat"}>{usPositive.toLocaleString("en")}</div>
+              </Stats>
+              <Stats color={"#86bbd8"}>
+                <div>Negative Tests:</div>
+                <div className={"stat"}>{usNegative.toLocaleString("en")}</div>
+              </Stats>
+              <Stats color={"#f26419"}>
+                <div>Total Deaths:</div>
+                <div className={"stat"}>{usDeaths.toLocaleString("en")}</div>
+              </Stats>
+            </StatsContainer>
           </div>
 
           <MapChart data={table_data} />

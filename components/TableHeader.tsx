@@ -17,8 +17,9 @@ const TableHeader = ({ titles }: Props) => {
             fontWeight: "bold",
             width: "100px",
             height: "35px",
-            backgroundColor: "#CCCCCC",
+            backgroundColor: "#999999",
             fontSize: "12px",
+            color: "white",
           }}
           alignMiddle={true}
           // sort={sortDir}
@@ -34,8 +35,9 @@ const TableHeader = ({ titles }: Props) => {
             style={{
               fontWeight: "bold",
               height: "35px",
-              backgroundColor: "#CCCCCC",
+              backgroundColor: "#999999",
               fontSize: "12px",
+              color: "white",
             }}
             alignMiddle={true}
             key={"header_" + i}

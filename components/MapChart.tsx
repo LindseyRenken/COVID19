@@ -59,8 +59,6 @@ class MapChart extends Component<Props> {
             offset: 0,
           });
 
-        console.log(geoView);
-
         // 33658a-86bbd8-758e4f-f6ae2d-f26419
 
         const userView = chart.createView();

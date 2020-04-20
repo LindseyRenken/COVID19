@@ -39,7 +39,6 @@ const Testing = ({ data }: Props) => {
             <DataTableCell>
               <StyledCell>{RenderCell(v.pending, v.total)}</StyledCell>
             </DataTableCell>
-
             <DataTableCell>
               <SparkLineChart
                 positive={v.positive}
