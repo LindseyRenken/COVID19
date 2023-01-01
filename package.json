@@ -34,7 +34,7 @@
     "array-smooth": "^1.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "luxon": "^1.23.0",
-    "next": "^9.3.3",
+    "next": "^9.5.5",
     "next-transpile-modules": "^3.1.0",
     "react": "^16.13.1",
     "react-device-breakpoints": "^2.0.3",
